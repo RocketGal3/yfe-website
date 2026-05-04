@@ -38,112 +38,17 @@
   .topics-grid{grid-template-columns:1fr;}
   .speaking-cta-band{padding:36px 24px;flex-direction:column;text-align:center;}
 }
-
-.press-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px;
-  margin-bottom:60px;
-}
-.press-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:28px;
-  text-decoration:none;
-  color:inherit;
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-  transition:border-color .3s,transform .2s,background .3s;
-  position:relative;
-  overflow:hidden;
-}
-.press-card::before{
-  content:'';
-  position:absolute;
-  top:0;left:0;right:0;
-  height:2px;
-  background:linear-gradient(90deg,var(--accent),var(--gold));
-  transform:scaleX(0);
-  transform-origin:left;
-  transition:transform .4s;
-}
-.press-card:hover{
-  border-color:var(--accent);
-  transform:translateY(-3px);
-  background:rgba(45,40,128,0.5);
-}
+.press-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:60px;}
+.press-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:12px;transition:border-color .3s,transform .2s,background .3s;position:relative;overflow:hidden;}
+.press-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .4s;}
+.press-card:hover{border-color:var(--accent);transform:translateY(-3px);background:rgba(45,40,128,0.5);}
 .press-card:hover::before{transform:scaleX(1);}
-.press-pub{
-  font-size:10px;
-  letter-spacing:3px;
-  color:var(--gold);
-  text-transform:uppercase;
-  font-weight:700;
-}
-.press-title{
-  font-family:'Cormorant Garamond',serif;
-  font-size:18px;
-  font-weight:700;
-  color:var(--bright);
-  line-height:1.3;
-}
-.press-quote{
-  font-size:14px;
-  color:var(--soft);
-  line-height:1.7;
-  font-style:italic;
-  border-left:2px solid var(--accent);
-  padding-left:12px;
-  flex:1;
-}
-.press-link{
-  font-size:11px;
-  letter-spacing:2px;
-  color:var(--accent);
-  text-transform:uppercase;
-}
-@media(max-width:900px){
-  .press-grid{grid-template-columns:1fr;}
-}
-
-
-.press-logo-wrap {
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 10px;
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 10px 16px;
-}
-.press-logo-wrap.press-logo-dark {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 10px 16px;
-}
-.press-logo-img {
-  max-height: 40px;
-  max-width: 190px;
-  object-fit: contain;
-  display: block;
-}
-
-.press-logo{
-  display:inline-block;
-  font-family:'Cormorant Garamond',serif;
-  font-weight:700;
-  font-size:22px;
-  line-height:1;
-  letter-spacing:-0.5px;
-}
-.press-logo-time{color:#cc0000;font-family:Georgia,serif;font-size:20px;}
-.press-logo-ifl{color:#fff;font-family:Arial Black,sans-serif;font-size:18px;}
-.press-logo-yahoo{color:#6001d2;font-family:Arial,sans-serif;font-size:20px;}
-.press-logo-remezcla{color:#fff;font-family:Georgia,serif;font-style:italic;font-size:22px;}
-.press-logo-npr{color:#222;background:#fff;padding:2px 8px;border-radius:3px;font-family:Arial Black,sans-serif;font-size:18px;}
+.press-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:var(--bright);line-height:1.3;}
+.press-quote{font-size:14px;color:var(--soft);line-height:1.7;font-style:italic;border-left:2px solid var(--accent);padding-left:12px;flex:1;}
+.press-link{font-size:11px;letter-spacing:2px;color:var(--accent);text-transform:uppercase;}
+.press-logo-wrap{height:64px;display:flex;align-items:center;justify-content:flex-start;margin-bottom:10px;background:#ffffff;border-radius:8px;padding:10px 16px;}
+.press-logo-img{max-height:40px;max-width:190px;object-fit:contain;display:block;}
+@media(max-width:900px){.press-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -154,7 +59,6 @@
 <nav id="nav">
   <a href="index.html" class="nav-logo"><img src="logo.svg" alt="YourFemaleEngineer" class="nav-logo-img"></a>
   <ul class="nav-links">
-    
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="content.html">Content</a></li>
@@ -179,7 +83,7 @@
       <a href="contact.html" class="btn-primary" style="margin-top:12px;">Book Joan to Speak</a>
     </div>
     <div class="speaking-stats">
-          <div class="speaking-stat"><div class="speaking-stat-num">6</div><div class="speaking-stat-label">Keynote Topics</div></div>
+      <div class="speaking-stat"><div class="speaking-stat-num">6*</div><div class="speaking-stat-label">Keynote Topics</div></div>
       <div class="speaking-stat"><div class="speaking-stat-num">10+</div><div class="speaking-stat-label">Missions Launched to Space</div></div>
       <div class="speaking-stat"><div class="speaking-stat-num">15+</div><div class="speaking-stat-label">Years in STEM</div></div>
       <div class="speaking-stat"><div class="speaking-stat-num">3</div><div class="speaking-stat-label">Languages</div></div>
@@ -189,75 +93,71 @@
   <div class="reveal" style="margin-bottom:32px;">
     <div class="section-label">Keynote Topics</div>
     <h2 class="section-title">Signature <em>Talks</em></h2>
-    <p style="font-size:18px;color:var(--soft);line-height:1.8;max-width:700px;">Each keynote is tailored to your audience and can be delivered virtually or in-person. Below are Joan's core signature talks — spanning space exploration, diversity, resilience, and professional growth.</p>
+    <p style="font-size:18px;color:var(--soft);line-height:1.8;max-width:700px;">Joan delivers 6* signature keynote talks covering space exploration, diversity in STEM, resilience, and professional growth. Each talk can be tailored to your audience and delivered virtually or in-person.</p>
   </div>
 
   <div class="topics-grid">
     <div class="topic-card reveal">
       <div class="topic-number">01</div>
       <div class="topic-title">Navigating the Universe: A History of Science Exploration Missions</div>
-      <div class="topic-desc">Joan takes audiences on a compelling journey through the evolution of science exploration missions, from the earliest robotic explorers to the sophisticated deep-space observatories redefining our understanding of the universe today. Through powerful stories of ambition, failure, resilience, and discovery, she connects the legacy of space exploration to the next generation of scientists and engineers.</div>
+      <div class="topic-desc">Joan takes audiences on a compelling journey through the evolution of science exploration missions, from the earliest robotic explorers to the sophisticated deep-space observatories redefining our understanding of the universe today.</div>
       <div class="topic-perfect">
         <div class="topic-perfect-label">✦ Perfect For</div>
-        <div class="topic-perfect-list"><strong>Educational Conferences</strong> · <strong>Universities & Academic Institutions</strong> · <strong>Corporate Innovation & Leadership Events</strong> · <strong>Space & Science Outreach Programs</strong> · <strong>Women in STEM & Mentorship Events</strong></div>
+        <div class="topic-perfect-list"><strong>Educational Conferences</strong> · <strong>Universities</strong> · <strong>Corporate Innovation Events</strong> · <strong>Space & Science Outreach</strong> · <strong>Women in STEM Events</strong></div>
       </div>
     </div>
-
     <div class="topic-card reveal" style="transition-delay:.1s;">
       <div class="topic-number">02</div>
       <div class="topic-title">Space for Everyone: The Importance of Diversity in Space</div>
-      <div class="topic-desc">Joan explores why the future of space exploration depends on who gets to participate in it. This talk goes beyond buzzwords, examining the tangible link between diversity, technical excellence, and resilient teams. She addresses systemic barriers while offering practical strategies for building inclusive cultures that attract and retain top talent.</div>
+      <div class="topic-desc">Joan explores why the future of space exploration depends on who gets to participate in it — examining the tangible link between diversity, technical excellence, and resilient teams.</div>
       <div class="topic-perfect">
         <div class="topic-perfect-label">✦ Perfect For</div>
-        <div class="topic-perfect-list"><strong>STEM & Aerospace Conferences</strong> · <strong>Corporate Leadership & DEI Initiatives</strong> · <strong>Universities & Student Organizations</strong> · <strong>Industry Teams & Executive Retreats</strong></div>
+        <div class="topic-perfect-list"><strong>STEM & Aerospace Conferences</strong> · <strong>Corporate DEI Initiatives</strong> · <strong>Universities</strong> · <strong>Executive Retreats</strong></div>
       </div>
     </div>
-
     <div class="topic-card reveal" style="transition-delay:.15s;">
       <div class="topic-number">03</div>
       <div class="topic-title">Minorities in STEM: Closing the Skills Gap</div>
-      <div class="topic-desc">As a Latina engineer in aerospace, Joan brings a unique perspective on one of the most pressing challenges in STEM today: the skills gap and the untapped potential within underrepresented communities to close it. She offers actionable strategies for organizations, educators, and leaders to cultivate inclusive talent pipelines.</div>
+      <div class="topic-desc">As a Latina engineer in aerospace, Joan brings a unique perspective on the skills gap and the untapped potential within underrepresented communities to close it.</div>
       <div class="topic-perfect">
         <div class="topic-perfect-label">✦ Perfect For</div>
-        <div class="topic-perfect-list"><strong>Corporate & Industry Leaders</strong> · <strong>STEM Conferences & Workforce Development Summits</strong> · <strong>Universities & STEM Programs</strong> · <strong>DEI Initiatives</strong></div>
+        <div class="topic-perfect-list"><strong>Corporate Leaders</strong> · <strong>STEM Conferences</strong> · <strong>Universities</strong> · <strong>DEI Initiatives</strong></div>
       </div>
     </div>
-
     <div class="topic-card reveal" style="transition-delay:.2s;">
       <div class="topic-number">04</div>
       <div class="topic-title">Reaching for the Stars: Achieving Cosmic Success Through Hardships</div>
-      <div class="topic-desc">Joan shares her journey through aerospace and space industries, revealing how resilience, determination, and perseverance can turn challenges into opportunities. Drawing from experiences at NASA and Blue Origin, she inspires audiences to embrace challenges as stepping stones, cultivate grit, and develop the mindset needed to excel in demanding careers.</div>
+      <div class="topic-desc">Joan shares her journey through aerospace and space industries, revealing how resilience, determination, and perseverance can turn challenges into opportunities.</div>
       <div class="topic-perfect">
         <div class="topic-perfect-label">✦ Perfect For</div>
-        <div class="topic-perfect-list"><strong>STEM & Aerospace Conferences</strong> · <strong>Corporate Leadership & Team Development</strong> · <strong>Universities & Student Organizations</strong> · <strong>Industry Teams & Executive Retreats</strong></div>
+        <div class="topic-perfect-list"><strong>STEM & Aerospace Conferences</strong> · <strong>Corporate Leadership</strong> · <strong>Universities</strong> · <strong>Executive Retreats</strong></div>
       </div>
     </div>
-
     <div class="topic-card reveal" style="transition-delay:.25s;">
       <div class="topic-number">05</div>
       <div class="topic-title">Humanizing the STEM Profession: A Guide Through Failure</div>
-      <div class="topic-desc">Joan shines a light on the human side of STEM, sharing candid stories of challenges, setbacks, and failures from her journey through aerospace and space engineering. She demonstrates that failure isn't a roadblock, it's a critical part of growth. Audiences gain practical strategies to navigate obstacles and foster a culture where learning thrives.</div>
+      <div class="topic-desc">Joan shines a light on the human side of STEM, sharing candid stories of challenges, setbacks, and failures — demonstrating that failure is a critical part of growth.</div>
       <div class="topic-perfect">
         <div class="topic-perfect-label">✦ Perfect For</div>
-        <div class="topic-perfect-list"><strong>STEM & Aerospace Conferences</strong> · <strong>Industry Teams & Leadership Programs</strong> · <strong>Universities & Mentorship Organizations</strong> · <strong>DEI Initiatives</strong></div>
+        <div class="topic-perfect-list"><strong>STEM & Aerospace Conferences</strong> · <strong>Leadership Programs</strong> · <strong>Universities</strong> · <strong>DEI Initiatives</strong></div>
       </div>
     </div>
-
     <div class="topic-card reveal" style="transition-delay:.3s;">
       <div class="topic-number">06</div>
       <div class="topic-title">How to Build Your Professional Brand in Aerospace</div>
-      <div class="topic-desc">Joan shares actionable strategies for standing out and thriving in the competitive aerospace industry. She guides audiences through building credibility, networking effectively, and communicating their expertise in ways that open doors to leadership roles and long-term career growth — emphasizing mentorship, advocacy, and representation.</div>
+      <div class="topic-desc">Joan shares actionable strategies for standing out in the competitive aerospace industry — building credibility, networking effectively, and communicating expertise that opens doors.</div>
       <div class="topic-perfect">
         <div class="topic-perfect-label">✦ Perfect For</div>
-        <div class="topic-perfect-list"><strong>STEM & Aerospace Conferences</strong> · <strong>Early to Mid-Career Professionals</strong> · <strong>University & Graduate Students in STEM</strong> · <strong>Corporate Leadership & Talent Development</strong> · <strong>Women & Underrepresented Groups in STEM</strong></div>
+        <div class="topic-perfect-list"><strong>STEM & Aerospace Conferences</strong> · <strong>Early to Mid-Career Professionals</strong> · <strong>University Students</strong> · <strong>Women in STEM</strong></div>
       </div>
     </div>
   </div>
 
-  <!-- FEATURED: Sandvik Panel -->
-  <div style="margin:-24px 0 40px;padding:16px 24px;border:1px solid rgba(240,192,96,0.3);border-radius:8px;background:rgba(240,192,96,0.06);"><span style="color:var(--gold);font-size:13px;font-style:italic;">* Every keynote topic can be fully tailored to your event, audience, industry, and goals. Joan works closely with organizers to ensure maximum impact.</span></div>
+  <div style="margin:-24px 0 40px;padding:16px 24px;border:1px solid rgba(240,192,96,0.3);border-radius:8px;background:rgba(240,192,96,0.06);">
+    <span style="color:var(--gold);font-size:13px;font-style:italic;">* Every keynote topic can be fully tailored to your event, audience, industry, and goals. Joan works closely with organizers to ensure maximum impact.</span>
+  </div>
 
-<div class="sandvik-feature reveal" style="margin-bottom:60px;">
+  <div class="sandvik-feature reveal" style="margin-bottom:60px;">
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;">
       <div style="width:3px;height:36px;background:linear-gradient(to bottom,var(--accent),var(--gold));border-radius:2px;flex-shrink:0;"></div>
       <div>
@@ -265,19 +165,16 @@
         <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--bright);line-height:1.1;">Mining Industry Roundtable — Sandvik</div>
       </div>
     </div>
-
-    <!-- Photo gallery row -->
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin-bottom:24px;">
       <img src="photo-sandvik-panel.jpg" alt="Sandvik Panel" style="width:100%;height:200px;object-fit:cover;object-position:center top;border-radius:8px;border:1px solid var(--border);">
       <img src="photo-speaking-selfie.jpg" alt="With Students" style="width:100%;height:200px;object-fit:cover;object-position:center 20%;border-radius:8px;border:1px solid var(--border);">
       <img src="photo-speaking-mic.jpg" alt="Speaking" style="width:100%;height:200px;object-fit:cover;object-position:center 20%;border-radius:8px;border:1px solid var(--border);">
       <img src="photo-speaking-stage.jpg" alt="On Stage" style="width:100%;height:200px;object-fit:cover;object-position:center 25%;border-radius:8px;border:1px solid var(--border);">
     </div>
-
     <div style="background:rgba(30,26,80,0.6);border:1px solid var(--border);border-radius:12px;padding:32px 36px;display:flex;align-items:flex-start;justify-content:space-between;gap:40px;flex-wrap:wrap;">
       <div style="flex:1;min-width:280px;">
-        <p style="font-size:17px;color:var(--soft);line-height:1.9;margin-bottom:20px;">Joan was invited to moderate a high-level industry roundtable with Sandvik, exploring how the mining sector can close its growing talent gap. The conversation brought together engineers, executives, and educators to tackle workforce challenges at the intersection of technology and operations.</p>
-        <p style="font-size:17px;color:var(--soft);line-height:1.9;">The event highlights Joan's reach beyond aerospace, demonstrating her ability to lead meaningful conversations across engineering disciplines as a trusted voice on talent, diversity, and the future of technical careers.</p>
+        <p style="font-size:17px;color:var(--soft);line-height:1.9;margin-bottom:20px;">Joan was invited to moderate a high-level industry roundtable with Sandvik, exploring how the mining sector can close its growing talent gap.</p>
+        <p style="font-size:17px;color:var(--soft);line-height:1.9;">The event highlights Joan's reach beyond aerospace, demonstrating her ability to lead meaningful conversations across engineering disciplines.</p>
       </div>
       <div style="display:flex;flex-direction:column;gap:12px;flex-shrink:0;">
         <div style="font-size:10px;letter-spacing:3px;color:var(--soft);text-transform:uppercase;">Details</div>
@@ -291,7 +188,6 @@
       </div>
     </div>
   </div>
-
 
   <div class="divider"></div>
 
