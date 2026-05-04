@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speaking — Joan Melendez Misner</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.speaking-wrap{padding:0 60px 120px;max-width:1300px;margin:0 auto;position:relative;z-index:1;}
+.speaking-intro{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-bottom:80px;}
+.speaking-intro-text p{font-size:19px;line-height:2;color:var(--soft);margin-bottom:20px;}
+.speaking-intro-text p strong{color:var(--text);font-weight:500;}
+.speaking-stats{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+.speaking-stat{background:var(--card);border:1px solid var(--border);padding:28px 24px;text-align:center;transition:border-color .3s;}
+.speaking-stat:hover{border-color:var(--gold);}
+.speaking-stat-num{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:6px;}
+.speaking-stat-label{font-size:13px;letter-spacing:2px;color:var(--soft);text-transform:uppercase;}
+.topics-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:60px;}
+.topic-card{background:var(--card);border:1px solid var(--border);padding:40px 36px;position:relative;overflow:hidden;transition:border-color .3s,background .3s;cursor:default;}
+.topic-card:hover{background:#0f1222;border-color:var(--accent);}
+.topic-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .5s;}
+.topic-card:hover::before{transform:scaleX(1);}
+.topic-number{font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:900;color:var(--border);line-height:1;margin-bottom:16px;transition:color .3s;}
+.topic-card:hover .topic-number{color:var(--muted);}
+.topic-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--bright);line-height:1.2;margin-bottom:16px;letter-spacing:-.3px;}
+.topic-desc{font-size:19px;color:var(--soft);line-height:1.9;margin-bottom:24px;}
+.topic-perfect{border-top:1px solid var(--border);padding-top:18px;}
+.topic-perfect-label{font-size:11px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;}
+.topic-perfect-list{font-size:18px;color:var(--soft);line-height:1.8;font-weight:500;}
+.topic-perfect-list strong{color:var(--text);font-weight:600;}
+.speaking-cta-band{background:var(--card);border:1px solid var(--border);padding:48px 60px;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;position:relative;overflow:hidden;}
+.speaking-cta-band::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,174,255,.04),transparent 60%);}
+.speaking-cta-text h3{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;color:var(--bright);letter-spacing:-.5px;margin-bottom:8px;}
+.speaking-cta-text p{font-size:18px;color:var(--soft);line-height:1.7;max-width:500px;}
+@media(max-width:900px){
+  .speaking-wrap{padding:0 24px 80px;}
+  .speaking-intro{grid-template-columns:1fr;gap:40px;}
+  .topics-grid{grid-template-columns:1fr;}
+  .speaking-cta-band{padding:36px 24px;flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<canvas id="starfield"></canvas>
+
+<nav id="nav">
+  <a href="/yfe-website/index.html" class="nav-logo"><img src="logo.svg" alt="YourFemaleEngineer" class="nav-logo-img"></a>
+  <ul class="nav-links">
+    
+    <li><a href="/yfe-website/index.html">Home</a></li>
+    <li><a href="/yfe-website/about.html">About</a></li>
+    <li><a href="/yfe-website/content.html">Content</a></li>
+    <li><a href="/yfe-website/speaking.html" class="active">Speaking</a></li>
+    <li><a href="/yfe-website/mission-control.html">Mission Control</a></li>
+    <li><a href="/yfe-website/contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page-header">
+  <div class="page-eyebrow">Keynote Speaking</div>
+  <h1 class="page-title">Talks That<br><em>Move Rooms</em></h1>
+</div>
+
+<div class="speaking-wrap">
+
+  <div class="speaking-intro reveal">
+    <div class="speaking-intro-text">
+      <p>Joan is a <strong>dynamic keynote speaker</strong> who brings the energy of a rocket launch and the heart of a mentor to every stage. Drawing from her journey from Puerto Rico to NASA, she delivers talks that are equal parts technical credibility, personal storytelling, and actionable inspiration.</p>
+      <p>Whether she's speaking to a room of aerospace engineers, university students, or corporate leaders, Joan has a rare ability to connect across industries and backgrounds, leaving audiences genuinely fired up to act.</p>
+      <a href="/yfe-website/contact.html" class="btn-primary" style="margin-top:12px;">Book Joan to Speak</a>
+    </div>
+    <div class="speaking-stats">
+      <div class="speaking-stat"><div class="speaking-stat-num">6</div><div class="speaking-stat-label">Keynote Topics</div></div>
+      <div class="speaking-stat"><div class="speaking-stat-num">10+</div><div class="speaking-stat-label">Missions Launched to Space</div></div>
+      <div class="speaking-stat"><div class="speaking-stat-num">15+</div><div class="speaking-stat-label">Years in STEM</div></div>
+      <div class="speaking-stat"><div class="speaking-stat-num">3</div><div class="speaking-stat-label">Languages</div></div>
+    </div>
+  </div>
+
+  <div class="reveal" style="margin-bottom:32px;">
+    <div class="section-label">Keynote Topics</div>
+    <h2 class="section-title">Signature <em>Talks</em></h2>
+    <p style="font-size:18px;color:var(--soft);line-height:1.8;max-width:700px;">Each keynote is tailored to your audience and can be delivered virtually or in-person. Below are Joan's core signature talks — spanning space exploration, diversity, resilience, and professional growth.</p>
+  </div>
+
+  <div class="topics-grid">
+    <div class="topic-card reveal">
+      <div class="topic-number">01</div>
+      <div class="topic-title">Navigating the Universe: A History of Science Exploration Missions</div>
+      <div class="topic-desc">Joan takes audiences on a compelling journey through the evolution of science exploration missions, from the earliest robotic explorers to the sophisticated deep-space observatories redefining our understanding of the universe today. Through powerful stories of ambition, failure, resilience, and discovery, she connects the legacy of space exploration to the next generation of scientists and engineers.</div>
+      <div class="topic-perfect">
+        <div class="topic-perfect-label">✦ Perfect For</div>
+        <div class="topic-perfect-list"><strong>Educational Conferences</strong> · <strong>Universities & Academic Institutions</strong> · <strong>Corporate Innovation & Leadership Events</strong> · <strong>Space & Science Outreach Programs</strong> · <strong>Women in STEM & Mentorship Events</strong></div>
+      </div>
+    </div>
+
+    <div class="topic-card reveal" style="transition-delay:.1s;">
+      <div class="topic-number">02</div>
+      <div class="topic-title">Space for Everyone: The Importance of Diversity in Space</div>
+      <div class="topic-desc">Joan explores why the future of space exploration depends on who gets to participate in it. This talk goes beyond buzzwords, examining the tangible link between diversity, technical excellence, and resilient teams. She addresses systemic barriers while offering practical strategies for building inclusive cultures that attract and retain top talent.</div>
+      <div class="topic-perfect">
+        <div class="topic-perfect-label">✦ Perfect For</div>
+        <div class="topic-perfect-list"><strong>STEM & Aerospace Conferences</strong> · <strong>Corporate Leadership & DEI Initiatives</strong> · <strong>Universities & Student Organizations</strong> · <strong>Industry Teams & Executive Retreats</strong></div>
+      </div>
+    </div>
+
+    <div class="topic-card reveal" style="transition-delay:.15s;">
+      <div class="topic-number">03</div>
+      <div class="topic-title">Minorities in STEM: Closing the Skills Gap</div>
+      <div class="topic-desc">As a Latina engineer in aerospace, Joan brings a unique perspective on one of the most pressing challenges in STEM today: the skills gap and the untapped potential within underrepresented communities to close it. She offers actionable strategies for organizations, educators, and leaders to cultivate inclusive talent pipelines.</div>
+      <div class="topic-perfect">
+        <div class="topic-perfect-label">✦ Perfect For</div>
+        <div class="topic-perfect-list"><strong>Corporate & Industry Leaders</strong> · <strong>STEM Conferences & Workforce Development Summits</strong> · <strong>Universities & STEM Programs</strong> · <strong>DEI Initiatives</strong></div>
+      </div>
+    </div>
+
+    <div class="topic-card reveal" style="transition-delay:.2s;">
+      <div class="topic-number">04</div>
+      <div class="topic-title">Reaching for the Stars: Achieving Cosmic Success Through Hardships</div>
+      <div class="topic-desc">Joan shares her journey through aerospace and space industries, revealing how resilience, determination, and perseverance can turn challenges into opportunities. Drawing from experiences at NASA and Blue Origin, she inspires audiences to embrace challenges as stepping stones, cultivate grit, and develop the mindset needed to excel in demanding careers.</div>
+      <div class="topic-perfect">
+        <div class="topic-perfect-label">✦ Perfect For</div>
+        <div class="topic-perfect-list"><strong>STEM & Aerospace Conferences</strong> · <strong>Corporate Leadership & Team Development</strong> · <strong>Universities & Student Organizations</strong> · <strong>Industry Teams & Executive Retreats</strong></div>
+      </div>
+    </div>
+
+    <div class="topic-card reveal" style="transition-delay:.25s;">
+      <div class="topic-number">05</div>
+      <div class="topic-title">Humanizing the STEM Profession: A Guide Through Failure</div>
+      <div class="topic-desc">Joan shines a light on the human side of STEM, sharing candid stories of challenges, setbacks, and failures from her journey through aerospace and space engineering. She demonstrates that failure isn't a roadblock, it's a critical part of growth. Audiences gain practical strategies to navigate obstacles and foster a culture where learning thrives.</div>
+      <div class="topic-perfect">
+        <div class="topic-perfect-label">✦ Perfect For</div>
+        <div class="topic-perfect-list"><strong>STEM & Aerospace Conferences</strong> · <strong>Industry Teams & Leadership Programs</strong> · <strong>Universities & Mentorship Organizations</strong> · <strong>DEI Initiatives</strong></div>
+      </div>
+    </div>
+
+    <div class="topic-card reveal" style="transition-delay:.3s;">
+      <div class="topic-number">06</div>
+      <div class="topic-title">How to Build Your Professional Brand in Aerospace</div>
+      <div class="topic-desc">Joan shares actionable strategies for standing out and thriving in the competitive aerospace industry. She guides audiences through building credibility, networking effectively, and communicating their expertise in ways that open doors to leadership roles and long-term career growth — emphasizing mentorship, advocacy, and representation.</div>
+      <div class="topic-perfect">
+        <div class="topic-perfect-label">✦ Perfect For</div>
+        <div class="topic-perfect-list"><strong>STEM & Aerospace Conferences</strong> · <strong>Early to Mid-Career Professionals</strong> · <strong>University & Graduate Students in STEM</strong> · <strong>Corporate Leadership & Talent Development</strong> · <strong>Women & Underrepresented Groups in STEM</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURED: Sandvik Panel -->
+  <div class="sandvik-feature reveal" style="margin-bottom:60px;">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;">
+      <div style="width:3px;height:36px;background:linear-gradient(to bottom,var(--accent),var(--gold));border-radius:2px;flex-shrink:0;"></div>
+      <div>
+        <div style="font-size:11px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:4px;">Featured Panel Appearance</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--bright);line-height:1.1;">Mining Industry Roundtable — Sandvik</div>
+      </div>
+    </div>
+
+    <!-- Photo gallery row -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin-bottom:24px;">
+      <img src="photo-sandvik-panel.jpg" alt="Sandvik Panel" style="width:100%;height:200px;object-fit:cover;object-position:center top;border-radius:8px;border:1px solid var(--border);">
+      <img src="photo-speaking-selfie.jpg" alt="With Students" style="width:100%;height:200px;object-fit:cover;object-position:center 20%;border-radius:8px;border:1px solid var(--border);">
+      <img src="photo-speaking-mic.jpg" alt="Speaking" style="width:100%;height:200px;object-fit:cover;object-position:center 20%;border-radius:8px;border:1px solid var(--border);">
+      <img src="photo-speaking-stage.jpg" alt="On Stage" style="width:100%;height:200px;object-fit:cover;object-position:center 25%;border-radius:8px;border:1px solid var(--border);">
+    </div>
+
+    <div style="background:rgba(30,26,80,0.6);border:1px solid var(--border);border-radius:12px;padding:32px 36px;display:flex;align-items:flex-start;justify-content:space-between;gap:40px;flex-wrap:wrap;">
+      <div style="flex:1;min-width:280px;">
+        <p style="font-size:17px;color:var(--soft);line-height:1.9;margin-bottom:20px;">Joan was invited to moderate a high-level industry roundtable with Sandvik, exploring how the mining sector can close its growing talent gap. The conversation brought together engineers, executives, and educators to tackle workforce challenges at the intersection of technology and operations.</p>
+        <p style="font-size:17px;color:var(--soft);line-height:1.9;">The event highlights Joan's reach beyond aerospace, demonstrating her ability to lead meaningful conversations across engineering disciplines as a trusted voice on talent, diversity, and the future of technical careers.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;flex-shrink:0;">
+        <div style="font-size:10px;letter-spacing:3px;color:var(--soft);text-transform:uppercase;">Details</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--text);"><span style="color:var(--accent);">✦</span>Panel Moderator</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--text);"><span style="color:var(--accent);">✦</span>Mining & Engineering Industry</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--text);"><span style="color:var(--accent);">✦</span>Talent Gap & Workforce Development</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--text);"><span style="color:var(--accent);">✦</span>In Partnership with Sandvik</div>
+        </div>
+        <a href="https://www.home.sandvik/en/news-and-media/news/2025/11/roundtable-explores-bridging-talent-gap-in-mining/" target="_blank" rel="noopener" class="btn-primary" style="margin-top:8px;text-align:center;">↗ Read the Full Story</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="speaking-cta-band reveal">
+    <div class="speaking-cta-text">
+      <h3>Ready to book Joan for your event?</h3>
+      <p>Whether virtual or in-person, Joan tailors every talk to your audience. Reach out with your event details, theme, and audience — and let's make it unforgettable.</p>
+    </div>
+    <a href="/yfe-website/contact.html" class="btn-primary">Get In Touch →</a>
+  </div>
+
+</div>
+
+<footer>
+  <img src="logo.svg" alt="YourFemaleEngineer" class="footer-logo-img">
+  <div class="footer-links">
+    <a href="/yfe-website/index.html">Home</a><a href="/yfe-website/about.html">About</a><a href="/yfe-website/content.html">Content</a><a href="/yfe-website/speaking.html">Speaking</a><a href="/yfe-website/contact.html">Contact</a>
+  </div>
+  <div class="footer-copy">© 2026 @YourFemaleEngineer</div>
+</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>

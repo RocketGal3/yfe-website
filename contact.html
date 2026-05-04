@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Joan Melendez Misner</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.contact-page{padding:0 60px 100px;max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+
+.contact-intro{text-align:center;max-width:760px;margin:0 auto 60px;}
+.contact-intro p{font-size:18px;line-height:2;color:var(--soft);}
+.contact-intro p strong{color:var(--text);font-weight:600;}
+
+.contact-main{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:stretch;}
+
+/* LEFT */
+.inquiry-types-list{display:flex;flex-direction:column;gap:14px;margin-bottom:32px;}
+.inquiry-block{
+  display:flex;align-items:flex-start;gap:18px;padding:22px 24px;
+  background:rgba(32,28,94,0.5);border:1px solid var(--border);
+  border-radius:12px;transition:border-color .3s,background .3s;cursor:pointer;
+}
+.inquiry-block:hover{border-color:var(--accent);background:rgba(45,40,128,0.55);}
+.inquiry-block.selected{border-color:var(--purple);background:rgba(100,70,200,0.25);box-shadow:0 0 20px rgba(153,102,255,0.15);}
+.inquiry-icon{
+  width:52px;height:52px;border-radius:12px;flex-shrink:0;
+  background:linear-gradient(135deg,rgba(126,184,255,0.18),rgba(153,102,255,0.18));
+  border:1px solid rgba(126,184,255,0.2);
+  display:flex;align-items:center;justify-content:center;font-size:24px;
+}
+.inquiry-title{font-size:19px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:7px;}
+.inquiry-desc{font-size:18px;color:var(--soft);line-height:1.7;}
+
+.contact-email-row{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  padding:18px 22px;background:rgba(32,28,94,0.4);
+  border:1px solid var(--border);border-radius:10px;
+  margin-bottom:14px;font-size:19px;color:var(--soft);
+}
+.contact-email-row a{color:var(--accent);text-decoration:none;font-weight:700;letter-spacing:.5px;font-size:19px;}
+.contact-email-row a:hover{text-decoration:underline;}
+.contact-response-note{font-size:19px;color:var(--soft);line-height:1.8;font-style:italic;}
+.contact-response-note strong{color:var(--text);font-style:normal;}
+.contact-sign{margin-top:28px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:28px;color:var(--accent);letter-spacing:1px;}
+
+/* RIGHT: form card */
+.contact-form-card{background:rgba(24,20,72,0.75);border:1px solid var(--border);border-radius:16px;padding:44px 40px;backdrop-filter:blur(16px);height:100%;display:flex;flex-direction:column;}
+.form-card-title{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--bright);margin-bottom:8px;letter-spacing:-.5px;}
+.form-card-sub{font-size:19px;color:var(--soft);line-height:1.7;margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+.form-inner{display:flex;flex-direction:column;gap:18px;flex:1;}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fg{display:flex;flex-direction:column;gap:8px;}
+.fl{font-size:18px;letter-spacing:2px;color:var(--silver);text-transform:uppercase;}
+.fi,.fs{background:rgba(18,16,58,0.8);border:1px solid rgba(126,184,255,0.18);border-radius:8px;color:var(--text);font-family:'Rajdhani',sans-serif;font-size:18px;padding:14px 16px;outline:none;transition:border-color .3s,background .3s;width:100%;appearance:none;}
+.ft{
+  background:rgba(18,16,58,0.8);border:1px solid rgba(126,184,255,0.18);
+  border-radius:8px;color:var(--text);font-family:'Rajdhani',sans-serif;
+  font-size:18px;padding:18px 18px;outline:none;transition:border-color .3s,background .3s;width:100%;appearance:none;flex:1;min-height:220px;}
+.fi::placeholder,.ft::placeholder{color:rgba(136,128,204,0.45);}
+.fi:focus,.fs:focus,.ft:focus{border-color:var(--accent);background:rgba(25,22,78,0.95);}
+.ft{resize:vertical;min-height:220px;line-height:1.7;}
+.fs option{background:#1a1650;}
+.fi-wrap{position:relative;}
+.fi-wrap .fi-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:19px;color:rgba(126,184,255,0.35);pointer-events:none;}
+.fi-wrap .fi{padding-left:42px;}
+
+.btn-transmit{
+  width:100%;padding:18px;background:linear-gradient(135deg,#6644cc,#4466ff);
+  border:none;border-radius:10px;color:#fff;font-family:'Rajdhani',sans-serif;
+  font-size:19px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;
+  transition:opacity .25s,transform .2s;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:6px;
+}
+.btn-transmit:hover{opacity:.88;transform:translateY(-2px);}
+.response-badge{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;font-size:19px;color:var(--soft);}
+.response-badge strong{color:var(--gold);}
+
+@media(max-width:900px){
+  .contact-page{padding:0 24px 80px;}
+  .contact-main{grid-template-columns:1fr;}
+  .form-row-2{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<canvas id="starfield"></canvas>
+
+<nav id="nav">
+  <a href="/yfe-website/index.html" class="nav-logo"><img src="logo.svg" alt="YourFemaleEngineer" class="nav-logo-img"></a>
+  <ul class="nav-links">
+    
+    <li><a href="/yfe-website/index.html">Home</a></li>
+    <li><a href="/yfe-website/about.html">About</a></li>
+    <li><a href="/yfe-website/content.html">Content</a></li>
+    <li><a href="/yfe-website/speaking.html">Speaking</a></li>
+    <li><a href="/yfe-website/mission-control.html">Mission Control</a></li>
+    <li><a href="/yfe-website/contact.html" class="active">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page-header" style="text-align:center;">
+  <div class="page-eyebrow" style="justify-content:center;">Contact</div>
+  <h1 class="page-title">Let's <em>Connect</em></h1>
+</div>
+
+<div class="contact-page">
+
+  <div class="contact-intro reveal">
+    <p>Thank you for your interest in connecting. Whether you're looking to book <strong>Joan for a keynote</strong>, inquire about <strong>consulting</strong>, explore a <strong>brand collaboration</strong>, or discuss a partnership opportunity, she would love to hear from you.</p>
+  </div>
+
+  <div class="contact-main">
+
+    <!-- LEFT -->
+    <div class="reveal">
+      <div class="inquiry-types-list">
+
+        <div class="inquiry-block selected" onclick="selectInquiry(this,'Speaking Engagement')">
+          <div class="inquiry-icon">🎤</div>
+          <div>
+            <div class="inquiry-title">Speaking Engagements</div>
+            <div class="inquiry-desc">Conferences, corporate events, universities, STEM programs, and leadership summits.</div>
+          </div>
+        </div>
+
+        <div class="inquiry-block" onclick="selectInquiry(this,'Consulting')">
+          <div class="inquiry-icon">⚙️</div>
+          <div>
+            <div class="inquiry-title">Consulting Inquiries</div>
+            <div class="inquiry-desc">Engineering strategy, technical advisory, systems thinking, workforce development, and aerospace-grade process improvement.</div>
+          </div>
+        </div>
+
+        <div class="inquiry-block" onclick="selectInquiry(this,'Brand & Media')">
+          <div class="inquiry-icon">🚀</div>
+          <div>
+            <div class="inquiry-title">Brand & Media Collaborations</div>
+            <div class="inquiry-desc">STEM-focused campaigns, aerospace & technology partnerships, panel appearances, podcasts, and media features.</div>
+          </div>
+        </div>
+
+        <div class="inquiry-block" onclick="selectInquiry(this,'General')">
+          <div class="inquiry-icon">🌍</div>
+          <div>
+            <div class="inquiry-title">General Inquiries</div>
+            <div class="inquiry-desc">Mentorship initiatives, nonprofit partnerships, and mission-aligned opportunities.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="contact-email-row">
+        ✉ Please use the form or email directly at
+        <a href="mailto:joan@yourfemaleengineer.com">joan@yourfemaleengineer.com</a>
+      </div>
+
+      <div class="contact-response-note">
+        A member of Joan's team will respond within <strong>2–3 business days</strong>.
+      </div>
+
+      <div class="contact-sign">Let's build something impactful together.</div>
+    </div>
+
+    <!-- RIGHT: Form -->
+    <div class="contact-form-card reveal" style="transition-delay:.15s;">
+      <div class="form-card-title">Send a Message</div>
+      <div class="form-card-sub">Drop the mission details below, including your goal, timeline, and any links or context.</div>
+
+      <div class="form-inner">
+        <div class="form-row-2">
+          <div class="fg">
+            <label class="fl">Name</label>
+            <div class="fi-wrap">
+              <span class="fi-icon">✉</span>
+              <input type="text" class="fi" placeholder="Your Full Name">
+            </div>
+          </div>
+          <div class="fg">
+            <label class="fl">Email</label>
+            <div class="fi-wrap">
+              <span class="fi-icon">✉</span>
+              <input type="email" class="fi" placeholder="you@company.com">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="fg">
+            <label class="fl">Organization</label>
+            <input type="text" class="fi" placeholder="Company / University / Program">
+          </div>
+          <div class="fg">
+            <label class="fl">Inquiry Type</label>
+            <select class="fs" id="inquirySelect">
+              <option value="">Select One</option>
+              <option>Speaking Engagement</option>
+              <option>Consulting</option>
+              <option>Brand & Media Collaboration</option>
+              <option>General Inquiry</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="fg">
+          <label class="fl">Message</label>
+          <textarea class="ft" placeholder="Share what you're building, key dates, audience, and how Joan can help."></textarea>
+        </div>
+
+        <button class="btn-transmit" type="button">
+          ✦ &nbsp; TRANSMIT MESSAGE
+        </button>
+
+        <div class="response-badge">
+          🔒 Response time: <strong>2–3 business days</strong>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <img src="logo.svg" alt="YourFemaleEngineer" class="footer-logo-img">
+  <div class="footer-links">
+    <a href="/yfe-website/index.html">Home</a>
+    <a href="/yfe-website/about.html">About</a>
+    <a href="/yfe-website/content.html">Content</a>
+    <a href="/yfe-website/speaking.html">Speaking</a>
+    <a href="/yfe-website/contact.html">Contact</a>
+  </div>
+  <div class="footer-copy">© 2026 @YourFemaleEngineer</div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+function selectInquiry(el, type) {
+  document.querySelectorAll('.inquiry-block').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  const sel = document.getElementById('inquirySelect');
+  if (sel) sel.value = type;
+}
+</script>
+</body>
+</html>

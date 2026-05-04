@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Joan Melendez Misner</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.about-wrap{padding:0 60px 120px;max-width:1300px;margin:0 auto;position:relative;z-index:1;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;margin-bottom:80px;}
+.about-story p{font-size:18px;line-height:2;color:var(--soft);margin-bottom:22px;}
+.about-story p strong{color:var(--text);font-weight:500;}
+.about-story p em{color:var(--accent);font-style:normal;}
+.about-stats{display:flex;flex-direction:column;gap:2px;}
+.about-eyebrow-large{font-size:22px;letter-spacing:6px;color:var(--accent);text-transform:uppercase;margin-bottom:24px;font-family:'Rajdhani',sans-serif;font-weight:600;}
+
+/* Puerto Rican flag — subtle background */
+.page-header-about{
+  padding:160px 60px 80px;position:relative;z-index:1;overflow:hidden;
+}
+.pr-flag-canvas{
+  display:inline-block;
+  vertical-align:middle;
+  width:48px;
+  height:32px;
+  opacity:0.55;
+  pointer-events:none;
+  z-index:1;
+  margin-left:14px;
+  border-radius:3px;
+}
+.page-header-about .about-eyebrow-large,
+.page-header-about .page-title{position:relative;z-index:1;}
+
+/* ── PHOTO SCROLL BANNER ── */
+.photo-banner-wrap{
+  position:relative;overflow:hidden;margin-bottom:80px;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+}
+.photo-banner-wrap::before,
+.photo-banner-wrap::after{
+  content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none;
+}
+.photo-banner-wrap::before{left:0;background:linear-gradient(to right,var(--black),transparent);}
+.photo-banner-wrap::after{right:0;background:linear-gradient(to left,var(--black),transparent);}
+
+.photo-banner{
+  display:flex;gap:12px;
+  animation:bannerScroll 40s linear infinite;
+  width:max-content;
+  padding:16px 0;
+}
+.photo-banner:hover{animation-play-state:paused;}
+
+@keyframes bannerScroll{
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
+
+.banner-photo{
+  height:220px;
+  width:auto;
+  object-fit:cover;
+  border-radius:6px;
+  border:1px solid var(--border);
+  flex-shrink:0;
+  transition:transform .3s,border-color .3s;
+  cursor:pointer;
+}
+.banner-photo:hover{
+  transform:scale(1.03);
+  border-color:var(--accent);
+}
+
+/* Mission cards */
+.missions-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:var(--bright);margin-bottom:32px;letter-spacing:-.5px;}
+.missions-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
+.mission-card{
+  background:var(--card);padding:28px 20px;position:relative;
+  overflow:hidden;transition:background .3s;text-decoration:none;color:inherit;display:block;
+}
+.mission-card:hover{background:#1a1650;}
+.mission-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:var(--m-color);transform:scaleX(0);transition:transform .4s;
+}
+.mission-card:hover::after{transform:scaleX(1);}
+.mission-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--m-color);margin-bottom:8px;letter-spacing:1px;}
+.mission-role{font-size:12px;letter-spacing:2px;color:var(--soft);text-transform:uppercase;margin-bottom:10px;}
+.mission-desc{font-size:18px;color:var(--soft);line-height:1.7;}
+.mission-link{font-size:11px;letter-spacing:2px;color:var(--m-color);text-transform:uppercase;margin-top:10px;display:inline-block;opacity:.7;transition:opacity .2s;}
+.mission-card:hover .mission-link{opacity:1;}
+
+/* Missions row 2 */
+.missions-grid-2{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:2px;}
+
+/* Quote */
+.quote-band{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);padding:40px 48px;margin-top:60px;}
+.quote-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;line-height:1.7;color:var(--bright);margin-bottom:16px;}
+.quote-attr{font-size:13px;letter-spacing:3px;color:var(--soft);text-transform:uppercase;}
+
+@media(max-width:900px){
+  .about-wrap{padding:0 24px 80px;}
+  .about-grid{grid-template-columns:1fr;gap:40px;}
+  .missions-grid{grid-template-columns:repeat(2,1fr);}
+  .missions-grid-2{grid-template-columns:repeat(2,1fr);}
+  .banner-photo{height:160px;}
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<canvas id="starfield"></canvas>
+
+<nav id="nav">
+  <a href="/yfe-website/index.html" class="nav-logo"><img src="logo.svg" alt="YourFemaleEngineer" class="nav-logo-img"></a>
+  <ul class="nav-links">
+    
+    <li><a href="/yfe-website/index.html">Home</a></li>
+    <li><a href="/yfe-website/about.html" class="active">About</a></li>
+    <li><a href="/yfe-website/content.html">Content</a></li>
+    <li><a href="/yfe-website/speaking.html">Speaking</a></li>
+    <li><a href="/yfe-website/mission-control.html">Mission Control</a></li>
+    <li><a href="/yfe-website/contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page-header-about" id="aboutHeader">
+<div class="about-eyebrow-large" style="display:flex;align-items:center;">About Joan <canvas class="pr-flag-canvas" id="flagCanvas"></canvas></div>
+  <h1 class="page-title">Rejected 13 times.<br><em>Now I launch rockets.</em></h1>
+</div>
+
+<div class="about-wrap">
+
+  <div class="about-grid">
+    <div class="about-story reveal">
+      <p>Joan Melendez Misner is a <strong>space engineer, science communicator, and public speaker</strong> dedicated to transforming complex aerospace systems into clear, accessible insights. She has contributed to science missions that explore our own planet, other planets, and even asteroids, working across mission integration, launch operations, and systems engineering to help turn bold concepts into flight-ready reality.</p>
+      <p>With experience supporting high-visibility programs at <strong>Kennedy Space Center</strong> and collaborating across multidisciplinary technical teams, Joan operates at the intersection of engineering excellence and strategic execution. Joan received a <em>dual bachelor's degree in Chemical Engineering and Chemistry</em> from the University of Maryland, and a <em>master's degree in Systems Engineering</em> from Naval Postgraduate School.</p>
+      <p>Prior to working for NASA, Joan worked for <strong>Blue Origin</strong> on the New Glenn rocket, and <strong>Naval Air Systems Command</strong> on jet engines, fuel systems, and biofuels research and qualification. She has worked with many commercial space and aviation companies throughout her career, establishing herself as a <strong>trusted professional voice in the industry</strong>.</p>
+      <p>Beyond the launch pad, she is the founder of <strong>YourFemaleEngineer</strong>, where she breaks down intricate space topics for broad audiences, advocates for greater representation in STEM, and mentors the next generation of innovators. Her work blends technical rigor with human-centered storytelling, inspiring curiosity and expanding access to space for underrepresented communities.</p>
+      <p>As a <em>first-generation college graduate</em>, she strives to increase representation in underrepresented communities, and encourages them to pursue STEM careers through social media and non-profits.</p>
+    </div>
+
+    <div class="about-stats reveal" style="transition-delay:.15s;">
+      <div class="stat-block" style="--s-color:var(--accent);">
+        <div class="stat-num">13×</div>
+        <div><div class="stat-info-title">Rejections Before NASA</div><div class="stat-info-sub">Persistence isn't just a value, it's the job requirement no one lists.</div></div>
+      </div>
+      <div class="stat-block" style="--s-color:var(--gold);">
+        <div class="stat-num">10+</div>
+        <div><div class="stat-info-title">Missions Launched to Space</div><div class="stat-info-sub">DART, Europa Clipper, GOES-U, Dragonfly, Artemis, Roman Space Telescope, ESCAPADE & more.</div></div>
+      </div>
+      <div class="stat-block" style="--s-color:#88ddbb;">
+        <div class="stat-num">262K</div>
+        <div><div class="stat-info-title">Combined Social Reach</div><div class="stat-info-sub">A growing community of future engineers across 5 platforms.</div></div>
+      </div>
+      <div class="stat-block" style="--s-color:#cc88ff;">
+        <div class="stat-num">1st</div>
+        <div><div class="stat-info-title">First-Generation Graduate</div><div class="stat-info-sub">From Puerto Rico to NASA, breaking barriers and building bridges.</div></div>
+      </div>
+      <div class="stat-block" style="--s-color:#ff8866;">
+        <div class="stat-num">15+</div>
+        <div><div class="stat-info-title">Years in STEM</div><div class="stat-info-sub">Aviation, defense, commercial space, and now deep space missions.</div></div>
+      </div>
+      <div class="stat-block" style="--s-color:var(--accent);">
+        <div class="stat-num">3</div>
+        <div><div class="stat-info-title">Languages</div><div class="stat-info-sub">Spanish, English, and Portuguese, fluent in all three.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHOTO SCROLL BANNER -->
+  <div class="photo-banner-wrap reveal">
+    <div class="photo-banner" id="photoBanner">
+      <img class="banner-photo" src="photo-mission-control-1.jpg" alt="Mission Control" style="aspect-ratio:16/9;width:auto;">
+      <img class="banner-photo" src="photo-cleanroom.jpg" alt="Clean Room" style="aspect-ratio:16/9;width:auto;">
+      <img class="banner-photo" src="photo-satellite.jpg" alt="Satellite Integration" style="aspect-ratio:3/4;width:auto;">
+      <img class="banner-photo" src="photo-mission-control-blue.jpg" alt="Mission Control" style="aspect-ratio:3/4;width:auto;">
+      <img class="banner-photo" src="photo-iowa-team.jpg" alt="Mission Team" style="aspect-ratio:3/4;width:auto;">
+      <img class="banner-photo" src="photo-rockets-outdoor.jpg" alt="Kennedy Space Center" style="aspect-ratio:3/4;width:auto;">
+      <img class="banner-photo" src="photo-whiteboard-1.jpeg" alt="Engineering" style="aspect-ratio:4/3;width:auto;">
+      <img class="banner-photo" src="photo-whiteboard-2.jpeg" alt="Flight Trajectory" style="aspect-ratio:4/3;width:auto;">
+      <img class="banner-photo" src="photo-sandvik.jpg" alt="Sandvik Partnership" style="aspect-ratio:4/3;width:auto;">
+      <img class="banner-photo" src="photo-dell.jpg" alt="Dell Collaboration" style="aspect-ratio:4/3;width:auto;">
+      <img class="banner-photo" src="photo-portrait.jpg" alt="Joan Melendez Misner" style="aspect-ratio:3/4;width:auto;">
+      <img class="banner-photo" src="photo-speaking.jpg" alt="Speaking Engagement" style="aspect-ratio:3/4;width:auto;">
+      <img class="banner-photo" src="photo-students.jpg" alt="STEM Outreach" style="aspect-ratio:4/3;width:auto;">
+      <img class="banner-photo" src="photo-rocket.jpg" alt="Blue Origin New Glenn" style="aspect-ratio:3/4;width:auto;">
+      <!-- duplicate set for seamless loop -->
+      <img class="banner-photo" src="photo-mission-control-1.jpg" alt="Mission Control" style="aspect-ratio:16/9;width:auto;">
+      <img class="banner-photo" src="photo-cleanroom.jpg" alt="Clean Room" style="aspect-ratio:16/9;width:auto;">
+      <img class="banner-photo" src="photo-satellite.jpg" alt="Satellite Integration" style="aspect-ratio:3/4;width:auto;">
+      <img class="banner-photo" src="photo-mission-control-blue.jpg" alt="Mission Control" style="aspect-ratio:3/4;width:auto;">
+      <img class="banner-photo" src="photo-iowa-team.jpg" alt="Mission Team" style="aspect-ratio:3/4;width:auto;">
+      <img class="banner-photo" src="photo-rockets-outdoor.jpg" alt="Kennedy Space Center" style="aspect-ratio:3/4;width:auto;">
+      <img class="banner-photo" src="photo-whiteboard-1.jpeg" alt="Engineering" style="aspect-ratio:4/3;width:auto;">
+      <img class="banner-photo" src="photo-whiteboard-2.jpeg" alt="Flight Trajectory" style="aspect-ratio:4/3;width:auto;">
+      <img class="banner-photo" src="photo-sandvik.jpg" alt="Sandvik Partnership" style="aspect-ratio:4/3;width:auto;">
+      <img class="banner-photo" src="photo-dell.jpg" alt="Dell Collaboration" style="aspect-ratio:4/3;width:auto;">
+      <img class="banner-photo" src="photo-portrait.jpg" alt="Joan Melendez Misner" style="aspect-ratio:3/4;width:auto;">
+      <img class="banner-photo" src="photo-speaking.jpg" alt="Speaking Engagement" style="aspect-ratio:3/4;width:auto;">
+      <img class="banner-photo" src="photo-students.jpg" alt="STEM Outreach" style="aspect-ratio:4/3;width:auto;">
+      <img class="banner-photo" src="photo-rocket.jpg" alt="Blue Origin New Glenn" style="aspect-ratio:3/4;width:auto;">
+    </div>
+  </div>
+
+  <!-- MISSIONS -->
+  <div class="reveal">
+    <div class="missions-title">Missions I've Worked On</div>
+
+    <!-- Row 1: 4 missions -->
+    <div class="missions-grid">
+      <a class="mission-card" href="https://science.nasa.gov/mission/dart/" target="_blank" rel="noopener" style="--m-color:#ff6644;">
+        <div class="mission-name">DART</div>
+        <div class="mission-role">Mission Integration</div>
+        <div class="mission-desc">Double Asteroid Redirection Test — humanity's first planetary defense mission. We hit an asteroid.</div>
+        <div class="mission-link">↗ NASA Mission Page</div>
+      </a>
+      <a class="mission-card" href="https://science.nasa.gov/mission/europa-clipper/" target="_blank" rel="noopener" style="--m-color:#4488ff;">
+        <div class="mission-name">Europa Clipper</div>
+        <div class="mission-role">Mission Integration</div>
+        <div class="mission-desc">Exploring Jupiter's ocean moon Europa for signs of habitability. One of the most ambitious missions ever.</div>
+        <div class="mission-link">↗ NASA Mission Page</div>
+      </a>
+      <a class="mission-card" href="https://www.nasa.gov/event/goes-u/" target="_blank" rel="noopener" style="--m-color:#ffcc44;">
+        <div class="mission-name">GOES-U</div>
+        <div class="mission-role">Mission Integration</div>
+        <div class="mission-desc">Next-gen weather satellite providing critical Earth observation data for forecasting and monitoring.</div>
+        <div class="mission-link">↗ NASA Mission Page</div>
+      </a>
+      <a class="mission-card" href="https://science.nasa.gov/mission/dragonfly/" target="_blank" rel="noopener" style="--m-color:#44ddaa;">
+        <div class="mission-name">Dragonfly</div>
+        <div class="mission-role">Mission Integration</div>
+        <div class="mission-desc">A rotorcraft lander heading to Saturn's moon Titan to study prebiotic chemistry and astrobiology.</div>
+        <div class="mission-link">↗ NASA Mission Page</div>
+      </a>
+    </div>
+
+    <!-- Row 2: 3 missions -->
+    <div class="missions-grid-2">
+      <a class="mission-card" href="https://www.nasa.gov/humans-in-space/artemis/" target="_blank" rel="noopener" style="--m-color:#e080c8;">
+        <div class="mission-name">Artemis</div>
+        <div class="mission-role">Mission Integration</div>
+        <div class="mission-desc">Returning humans to the Moon and paving the way for future missions to Mars. The next chapter of human space exploration.</div>
+        <div class="mission-link">↗ NASA Mission Page</div>
+      </a>
+      <a class="mission-card" href="https://science.nasa.gov/mission/roman-space-telescope/" target="_blank" rel="noopener" style="--m-color:#7eb8ff;">
+        <div class="mission-name">Nancy Roman</div>
+        <div class="mission-role">Mission Integration</div>
+        <div class="mission-desc">The Nancy Grace Roman Space Telescope — set to transform our understanding of dark energy, exoplanets, and infrared astrophysics.</div>
+        <div class="mission-link">↗ NASA Mission Page</div>
+      </a>
+      <a class="mission-card" href="https://science.nasa.gov/mission/escapade/" target="_blank" rel="noopener" style="--m-color:#ff8866;">
+        <div class="mission-name">ESCAPADE</div>
+        <div class="mission-role">Mission Integration</div>
+        <div class="mission-desc">Escape and Plasma Acceleration and Dynamics Explorers — twin spacecraft studying Mars' magnetosphere.</div>
+        <div class="mission-link">↗ NASA Mission Page</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="quote-band reveal">
+    <div class="quote-text">"My biggest fear is that the cure for Cancer is in the mind of a young girl that is told from a young age that science is for boys."</div>
+    <div class="quote-attr">— A quote Joan lives by, and why she creates</div>
+  </div>
+</div>
+
+<footer>
+  <img src="logo.svg" alt="YourFemaleEngineer" class="footer-logo-img">
+  <div class="footer-links">
+    <a href="/yfe-website/index.html">Home</a><a href="/yfe-website/about.html">About</a><a href="/yfe-website/content.html">Content</a><a href="/yfe-website/speaking.html">Speaking</a><a href="/yfe-website/contact.html">Contact</a>
+  </div>
+  <div class="footer-copy">© 2026 @YourFemaleEngineer</div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+/* Puerto Rican flag — small, subtle, bottom-right corner */
+(function(){
+  const canvas = document.getElementById('flagCanvas');
+  if (!canvas) return;
+
+  const W = 140, H = 84;
+  canvas.width  = W;
+  canvas.height = H;
+  const ctx = canvas.getContext('2d');
+
+  // 5 horizontal stripes
+  const stripeH = H / 5;
+  ['#ce1126','#fff','#ce1126','#fff','#ce1126'].forEach((c, i) => {
+    ctx.fillStyle = c;
+    ctx.fillRect(0, i * stripeH, W, stripeH);
+  });
+
+  // Blue triangle
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.lineTo(0, H);
+  ctx.lineTo(H * 0.87, H / 2); // equilateral proportion
+  ctx.closePath();
+  ctx.fillStyle = '#002868';
+  ctx.fill();
+
+  // White star
+  const cx = H * 0.33, cy = H / 2, r = H * 0.18, ri = r * 0.42;
+  ctx.beginPath();
+  for (let i = 0; i < 10; i++) {
+    const angle = (i * Math.PI / 5) - Math.PI / 2;
+    const rad = i % 2 === 0 ? r : ri;
+    i === 0
+      ? ctx.moveTo(cx + rad * Math.cos(angle), cy + rad * Math.sin(angle))
+      : ctx.lineTo(cx + rad * Math.cos(angle), cy + rad * Math.sin(angle));
+  }
+  ctx.closePath();
+  ctx.fillStyle = '#fff';
+  ctx.fill();
+})();
+</script>
+</html>

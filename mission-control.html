@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Dashboard — @YourFemaleEngineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,400&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+:root{
+  --black:#0e0c28;--deep:#16133a;--card:#1e1a50;--border:#2d2870;
+  --soft:#9890d8;--text:#e0dcf8;--bright:#f2f0ff;--accent:#7eb8ff;
+  --silver:#c8d0f0;--gold:#f0c060;--purple:#9966ff;--green:#44ddaa;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{min-height:100%;background:var(--black);}
+body{font-family:'Rajdhani',sans-serif;color:var(--text);
+  background-image:radial-gradient(ellipse at 15% 0%,rgba(100,60,255,0.2) 0%,transparent 50%),
+  radial-gradient(ellipse at 85% 100%,rgba(40,100,255,0.15) 0%,transparent 50%);}
+
+/* TOP BAR */
+
+
+
+
+
+
+.status-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 1.5s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+
+
+
+/* PAGE */
+.page{max-width:1160px;margin:0 auto;padding:48px 32px 80px;}
+
+/* SECTION HEADS */
+.section-head{margin-bottom:32px;}
+.section-label{font-size:10px;letter-spacing:4px;color:var(--accent);text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:10px;}
+.section-label::before{content:'';width:20px;height:1px;background:var(--accent);}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:700;color:var(--bright);letter-spacing:-.5px;line-height:1.1;}
+.section-title em{font-style:italic;font-weight:300;color:var(--accent);}
+.section-sub{font-size:15px;color:var(--soft);margin-top:8px;line-height:1.7;}
+
+/* PLATFORM STATS */
+.stats-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:2px;margin-bottom:32px;background:var(--border);border-radius:12px;overflow:hidden;}
+.platform-stat{background:var(--card);padding:22px 14px;text-align:center;transition:background .3s;position:relative;overflow:hidden;}
+.platform-stat::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--p-color,var(--accent));}
+.platform-stat:hover{background:rgba(45,40,128,0.9);}
+.platform-icon{font-size:18px;margin-bottom:8px;display:flex;align-items:center;justify-content:center;min-height:44px;}
+.platform-name{font-size:8px;letter-spacing:2px;color:var(--p-color,var(--accent));text-transform:uppercase;margin-bottom:8px;}
+.platform-num{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--p-color,var(--accent));line-height:1;margin-bottom:3px;text-shadow:0 0 14px var(--p-color,var(--accent));}
+.platform-label{font-size:8px;letter-spacing:2px;color:var(--soft);text-transform:uppercase;}
+
+/* REACH BANNER */
+.reach-banner{background:linear-gradient(135deg,rgba(100,70,220,0.22),rgba(60,120,255,0.14));border:1px solid rgba(126,184,255,0.22);border-radius:10px;padding:24px 32px;display:flex;align-items:center;justify-content:space-between;margin-bottom:52px;flex-wrap:wrap;gap:20px;}
+.reach-left{display:flex;align-items:center;gap:20px;}
+.reach-num{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:700;color:var(--accent);line-height:1;}
+.reach-info-title{font-size:15px;font-weight:600;color:var(--bright);margin-bottom:4px;}
+.reach-info-sub{font-size:13px;color:var(--soft);}
+.reach-right{display:flex;gap:28px;flex-wrap:wrap;}
+.reach-stat{text-align:center;}
+.reach-stat-num{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--gold);}
+.reach-stat-label{font-size:9px;letter-spacing:2px;color:var(--soft);text-transform:uppercase;}
+
+/* AUDIENCE */
+.audience-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:52px;}
+.audience-card{background:rgba(30,26,80,0.6);border:1px solid var(--border);border-radius:10px;padding:22px 26px;}
+.audience-card-label{font-size:9px;letter-spacing:3px;color:var(--soft);text-transform:uppercase;margin-bottom:14px;}
+.aud-bar-row{margin-bottom:10px;}
+.aud-bar-head{display:flex;justify-content:space-between;margin-bottom:5px;font-size:13px;color:var(--soft);}
+.aud-bar-head span:last-child{color:var(--text);font-family:monospace;font-size:12px;}
+.aud-track{height:3px;background:rgba(45,40,128,0.6);border-radius:2px;overflow:hidden;}
+.aud-fill{height:100%;border-radius:2px;background:var(--accent);box-shadow:0 0 6px var(--accent);}
+
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:48px 0;}
+
+/* ── BRAND GRID ── */
+.brands-section{margin-bottom:52px;}
+.brand-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;}
+
+.brand-card{
+  background:rgba(30,26,80,0.6);border:1px solid var(--border);border-radius:12px;
+  padding:0;overflow:hidden;text-decoration:none;color:inherit;
+  transition:border-color .3s,background .3s,transform .2s;display:flex;flex-direction:column;
+}
+.brand-card:hover{border-color:var(--accent);background:rgba(45,40,128,0.5);transform:translateY(-3px);}
+.brand-card::before{content:'';display:block;position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--purple),var(--accent));transform:scaleX(0);transform-origin:left;transition:transform .4s;}
+.brand-card:hover::before{transform:scaleX(1);}
+.brand-card{position:relative;}
+
+/* Logo area — white circle like the screenshot */
+.brand-logo-circle{
+  display:flex;align-items:center;justify-content:center;
+  width:100%;height:70px;
+  background:#f8f8f8;
+  border-radius:8px;
+  padding:10px;
+  flex-shrink:0;
+  overflow:hidden;
+  transition:transform .2s;
+  box-sizing:border-box;
+}
+.brand-logo-circle img{
+  max-width:100%;
+  max-height:52px;
+  object-fit:contain;
+  display:block;
+  filter:none;
+}
+.brand-card:hover .brand-logo-circle{
+  transform:scale(1.1);
+}
+.brand-logo-circle svg{
+  max-width:76px;max-height:52px;
+  width:auto;height:auto;
+  display:block;
+}
+.brand-name{
+  font-size:11px;letter-spacing:2px;color:var(--silver);
+  text-transform:uppercase;text-align:center;
+  padding:10px 8px 6px;font-weight:600;
+}
+.brand-link-row{
+  font-size:10px;letter-spacing:2px;color:var(--accent);
+  text-transform:uppercase;text-align:center;
+  padding:0 8px 16px;
+  display:flex;align-items:center;justify-content:center;gap:4px;
+}
+
+/* ── RATES ── */
+.rates-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);border-radius:10px;overflow:hidden;margin-bottom:16px;}
+.rate-card{background:var(--card);padding:36px 28px;position:relative;}
+.rate-card.featured{background:rgba(30,24,80,0.95);}
+.rate-card.featured::before{content:'MOST POPULAR';position:absolute;top:14px;right:14px;font-size:8px;letter-spacing:2px;color:var(--gold);border:1px solid var(--gold);padding:3px 8px;border-radius:3px;}
+.rate-platform{font-size:9px;letter-spacing:3px;color:var(--soft);text-transform:uppercase;margin-bottom:6px;}
+.rate-type{font-size:18px;font-weight:600;color:var(--bright);margin-bottom:18px;}
+.rate-price{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:900;color:var(--accent);margin-bottom:4px;line-height:1;}
+.rate-note{font-size:12px;color:var(--soft);margin-bottom:20px;}
+.rate-list{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.rate-list li{font-size:13px;color:var(--soft);padding:6px 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:8px;line-height:1.5;}
+.rate-list li::before{content:'→';color:var(--accent);font-size:12px;flex-shrink:0;margin-top:1px;}
+.rate-addon{background:rgba(240,192,96,0.08);border:1px solid rgba(240,192,96,0.25);border-radius:8px;padding:16px 20px;font-size:13px;color:var(--gold);text-align:center;font-style:italic;margin-bottom:32px;}
+
+/* CONTACT CTA */
+.contact-cta{background:linear-gradient(135deg,rgba(100,70,220,0.2),rgba(60,120,255,0.15));border:1px solid rgba(126,184,255,0.25);border-radius:14px;padding:48px;text-align:center;}
+.contact-cta h2{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:700;color:var(--bright);letter-spacing:-.5px;margin-bottom:12px;}
+.contact-cta h2 em{font-style:italic;font-weight:300;color:var(--accent);}
+.contact-cta p{font-size:16px;color:var(--soft);max-width:520px;margin:0 auto 32px;line-height:1.8;}
+.contact-cta p strong{color:var(--text);}
+.cta-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+.btn-cta{padding:14px 32px;border-radius:6px;font-family:'Rajdhani',sans-serif;font-size:12px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;transition:all .3s;}
+.btn-cta-primary{background:linear-gradient(135deg,var(--purple),var(--accent));color:#fff;border:none;}
+.btn-cta-primary:hover{opacity:.85;transform:translateY(-1px);}
+.btn-cta-ghost{background:transparent;border:1px solid var(--border);color:var(--soft);}
+.btn-cta-ghost:hover{border-color:var(--accent);color:var(--accent);}
+
+@media(max-width:900px){
+  
+  .page{padding:32px 18px 60px;}
+  .stats-grid{grid-template-columns:repeat(3,1fr);}
+  .audience-row{grid-template-columns:1fr;}
+  .brand-grid{grid-template-columns:repeat(3,1fr);}
+  .reach-banner{flex-direction:column;}
+  .rates-grid{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  .stats-grid{grid-template-columns:repeat(2,1fr);}
+  .brand-grid{grid-template-columns:repeat(2,1fr);}
+}
+/* Fix cursor visibility - hide custom cursor, use default */
+#cursor,#cursorRing{display:none !important;}
+body{cursor:auto !important;}
+a,button,[onclick]{cursor:pointer !important;}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="/yfe-website/index.html" class="nav-logo"><img src="logo.svg" alt="YourFemaleEngineer" class="nav-logo-img"></a>
+  <ul class="nav-links">
+    
+    <li><a href="/yfe-website/index.html">Home</a></li>
+    <li><a href="/yfe-website/about.html" >About</a></li>
+    <li><a href="/yfe-website/content.html">Content</a></li>
+    <li><a href="/yfe-website/speaking.html">Speaking</a></li>
+    <li><a href="/yfe-website/mission-control.html" class="active">Mission Control</a></li>
+    <li><a href="/yfe-website/contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page-hero" style="padding:140px 48px 0;max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+  <div>
+    <div class="section-label">Brand Dashboard</div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:700;color:var(--bright);line-height:1.1;margin-top:8px;">Mission <em style="font-style:italic;font-weight:300;color:var(--accent);">Control</em></h1>
+  </div>
+
+  <!-- Stars animation -->
+  <div style="flex:1;min-width:80px;display:flex;align-items:center;justify-content:center;overflow:hidden;height:60px;position:relative;">
+    <canvas id="heroStars" style="width:100%;height:60px;opacity:0.7;"></canvas>
+  </div>
+
+  <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+    <div style="display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--green);text-transform:uppercase;font-family:'Rajdhani',sans-serif;font-weight:600;"><div style="width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 1.5s ease-in-out infinite;"></div>Partnerships Now Open</div>
+    <a href="mailto:joan@yourfemaleengineer.com" style="font-size:13px;color:var(--accent);text-decoration:none;font-family:'Rajdhani',sans-serif;">joan@yourfemaleengineer.com</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  const canvas = document.getElementById('heroStars');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const stars = Array.from({length: 80}, () => ({
+    x: Math.random(),
+    y: Math.random(),
+    r: Math.random() * 1.8 + 0.4,
+    speed: Math.random() * 0.04 + 0.01,
+    phase: Math.random() * Math.PI * 2,
+    twinkleSpeed: Math.random() * 0.06 + 0.02,
+    color: Math.random() > 0.8 ? '255,220,180' : Math.random() > 0.5 ? '180,210,255' : '126,184,255',
+  }));
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const now = Date.now() / 1000;
+    stars.forEach(s => {
+      // Twinkle: sharp flickering using sine combination for organic feel
+      const twinkle = Math.pow(Math.abs(Math.sin(now * s.twinkleSpeed * 5 + s.phase)), 2);
+      const alpha = 0.1 + 0.9 * twinkle;
+      const radius = s.r * (0.6 + 0.4 * twinkle);
+
+      // Glow on bright twinkle
+      if (twinkle > 0.8) {
+        const glow = ctx.createRadialGradient(
+          s.x * canvas.width, s.y * canvas.height, 0,
+          s.x * canvas.width, s.y * canvas.height, radius * 4
+        );
+        glow.addColorStop(0, `rgba(${s.color},${alpha * 0.6})`);
+        glow.addColorStop(1, `rgba(${s.color},0)`);
+        ctx.beginPath();
+        ctx.arc(s.x * canvas.width, s.y * canvas.height, radius * 4, 0, Math.PI * 2);
+        ctx.fillStyle = glow;
+        ctx.fill();
+      }
+
+      ctx.beginPath();
+      ctx.arc(s.x * canvas.width, s.y * canvas.height, radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${s.color},${alpha})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+
+<div class="page">
+
+  <!-- PLATFORM STATS -->
+  <div class="section-head">
+    <div class="section-label">Social Platforms</div>
+    <h2 class="section-title">Reach & <em>Audience</em></h2>
+    <p class="section-sub">Active across 6 platforms reaching a combined 262K+ followers in the STEM, space, and engineering community.</p>
+  </div>
+
+  <div class="stats-grid">
+    <div class="platform-stat" style="--p-color:#e1306c;">
+      <span class="platform-icon"><svg width="44" height="44" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="url(#ig-grad-mc)"/><circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="1.8" fill="none"/><circle cx="17.5" cy="6.5" r="1.2" fill="white"/><defs><radialGradient id="ig-grad-mc" cx="30%" cy="107%" r="150%"><stop offset="0%" stop-color="#fdf497"/><stop offset="20%" stop-color="#fd5949"/><stop offset="45%" stop-color="#d6249f"/><stop offset="75%" stop-color="#285AEB"/></radialGradient></defs></svg></span>
+      <div class="platform-name">Instagram</div><div class="platform-num">111K</div><div class="platform-label">Followers</div>
+    </div>
+    <div class="platform-stat" style="--p-color:#00d964;">
+      <span class="platform-icon"><svg width="44" height="44" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.73a8.18 8.18 0 0 0 4.78 1.52V6.8a4.85 4.85 0 0 1-1.01-.11z"/></svg></span>
+      <div class="platform-name">TikTok</div><div class="platform-num">75K</div><div class="platform-label">Followers</div>
+    </div>
+    <div class="platform-stat" style="--p-color:#00ccff;">
+      <span class="platform-icon"><svg width="44" height="44" viewBox="0 0 192 192" fill="white"><path d="M141.537 88.988a66.667 66.667 0 0 0-2.518-1.143c-1.482-27.307-16.403-42.94-41.457-43.1h-.34c-14.986 0-27.449 6.396-35.12 18.036l13.779 9.452c5.73-8.695 14.724-10.548 21.348-10.548h.23c8.249.053 14.474 2.452 18.502 7.13 2.932 3.405 4.893 8.111 5.864 14.05-7.314-1.243-15.224-1.626-23.68-1.14-23.82 1.371-39.134 15.264-38.105 34.568.522 9.792 5.4 18.216 13.735 23.719 7.047 4.652 16.124 6.927 25.557 6.412 12.458-.683 22.231-5.436 29.049-14.127 5.178-6.6 8.453-15.153 9.899-25.93 5.937 3.583 10.337 8.298 12.767 13.966 4.132 9.635 4.373 25.468-8.546 38.376-11.319 11.308-24.925 16.2-45.488 16.351-22.809-.169-40.06-7.484-51.275-21.741C35.236 139.966 29.808 120.682 29.605 96c.203-24.682 5.63-43.966 16.133-57.317C57.053 24.425 74.303 17.11 97.113 16.94c22.95.17 40.526 7.52 52.262 21.85 5.765 7.016 10.173 15.88 13.166 26.21l16.323-4.325c-3.7-13.563-9.508-25.244-17.34-34.78C147.387 9.028 125.199-.007 97.213.0h-.12C69.174 0 47.319 9.061 32.195 26.943 18.529 43.162 11.424 66.04 11.198 95.84l-.002.16.002.16c.226 29.8 7.33 52.678 21 68.898C47.319 182.94 69.174 192 97.093 192h.12c24.964-.018 42.96-6.72 57.502-21.25 19.269-19.256 18.664-43.371 12.315-58.132-4.535-10.573-13.194-19.213-25.493-24.63z"/></svg></span>
+      <div class="platform-name">Threads</div><div class="platform-num">69K</div><div class="platform-label">Followers</div>
+    </div>
+    <div class="platform-stat" style="--p-color:#ff4444;">
+      <span class="platform-icon"><svg width="44" height="44" viewBox="0 0 24 24"><path fill="#FF0000" d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></span>
+      <div class="platform-name">YouTube</div><div class="platform-num">4K</div><div class="platform-label">Subscribers</div>
+    </div>
+    <div class="platform-stat" style="--p-color:#4a8fff;">
+      <span class="platform-icon"><svg width="44" height="44" viewBox="0 0 24 24"><path fill="#1877F2" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></span>
+      <div class="platform-name">Facebook</div><div class="platform-num">1K</div><div class="platform-label">Followers</div>
+    </div>
+    <div class="platform-stat" style="--p-color:#e0e0e0;">
+      <span class="platform-icon"><svg width="44" height="44" viewBox="0 0 24 24"><path fill="white" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span>
+      <div class="platform-name">Twitter/X</div><div class="platform-num">4K</div><div class="platform-label">Followers</div>
+    </div>
+  </div>
+
+  <div class="reach-banner">
+    <div class="reach-left">
+      <div class="reach-num">262K</div>
+      <div><div class="reach-info-title">Total Combined Reach</div><div class="reach-info-sub">Across Instagram, TikTok, Threads, YouTube, Facebook & X</div></div>
+    </div>
+    <div class="reach-right">
+      <div class="reach-stat"><div class="reach-stat-num">6</div><div class="reach-stat-label">Platforms</div></div>
+      <div class="reach-stat"><div class="reach-stat-num">31</div><div class="reach-stat-label">Brand Partners</div></div>
+      <div class="reach-stat"><div class="reach-stat-num">64%</div><div class="reach-stat-label">Female</div></div>
+      <div class="reach-stat"><div class="reach-stat-num">8%</div><div class="reach-stat-label">Engagement</div></div>
+    </div>
+  </div>
+
+  <!-- AUDIENCE -->
+  <div class="audience-row">
+    <div class="audience-card">
+      <div class="audience-card-label">Age Distribution</div>
+      <div class="aud-bar-row"><div class="aud-bar-head"><span>18–24</span><span>38%</span></div><div class="aud-track"><div class="aud-fill" style="width:38%;"></div></div></div>
+      <div class="aud-bar-row"><div class="aud-bar-head"><span>25–34</span><span>34%</span></div><div class="aud-track"><div class="aud-fill" style="width:34%;background:#9966ff;box-shadow:0 0 6px #9966ff;"></div></div></div>
+      <div class="aud-bar-row"><div class="aud-bar-head"><span>35–44</span><span>18%</span></div><div class="aud-track"><div class="aud-fill" style="width:18%;background:#f0c060;box-shadow:0 0 6px #f0c060;"></div></div></div>
+      <div class="aud-bar-row"><div class="aud-bar-head"><span>45+</span><span>10%</span></div><div class="aud-track"><div class="aud-fill" style="width:10%;background:#44ddaa;box-shadow:0 0 6px #44ddaa;"></div></div></div>
+    </div>
+    <div class="audience-card">
+      <div class="audience-card-label">Top Locations</div>
+      <div class="aud-bar-row"><div class="aud-bar-head"><span>🇺🇸 United States</span><span>65%</span></div><div class="aud-track"><div class="aud-fill" style="width:65%;"></div></div></div>
+      <div class="aud-bar-row"><div class="aud-bar-head"><span>🇬🇧 United Kingdom</span><span>15%</span></div><div class="aud-track"><div class="aud-fill" style="width:15%;background:#9966ff;box-shadow:0 0 6px #9966ff;"></div></div></div>
+      <div class="aud-bar-row"><div class="aud-bar-head"><span>🇲🇽 Mexico</span><span>10%</span></div><div class="aud-track"><div class="aud-fill" style="width:10%;background:#f0c060;box-shadow:0 0 6px #f0c060;"></div></div></div>
+      <div class="aud-bar-row"><div class="aud-bar-head"><span>🇨🇦 Canada</span><span>5%</span></div><div class="aud-track"><div class="aud-fill" style="width:5%;background:#44ddaa;box-shadow:0 0 6px #44ddaa;"></div></div></div>
+    </div>
+    <div class="audience-card">
+      <div class="audience-card-label">Audience Interests</div>
+      <div style="display:flex;flex-wrap:wrap;gap:7px;margin-top:4px;">
+        <span style="padding:5px 11px;border:1px solid var(--border);border-radius:20px;font-size:12px;color:var(--soft);">Space & Astronomy</span>
+        <span style="padding:5px 11px;border:1px solid var(--border);border-radius:20px;font-size:12px;color:var(--soft);">Engineering</span>
+        <span style="padding:5px 11px;border:1px solid var(--border);border-radius:20px;font-size:12px;color:var(--soft);">STEM Education</span>
+        <span style="padding:5px 11px;border:1px solid var(--border);border-radius:20px;font-size:12px;color:var(--soft);">Technology</span>
+        <span style="padding:5px 11px;border:1px solid var(--border);border-radius:20px;font-size:12px;color:var(--soft);">Women in STEM</span>
+        <span style="padding:5px 11px;border:1px solid var(--border);border-radius:20px;font-size:12px;color:var(--soft);">Hispanic Community</span>
+        <span style="padding:5px 11px;border:1px solid var(--border);border-radius:20px;font-size:12px;color:var(--soft);">Physics</span>
+        <span style="padding:5px 11px;border:1px solid var(--border);border-radius:20px;font-size:12px;color:var(--soft);">Science</span>
+        <span style="padding:5px 11px;border:1px solid var(--border);border-radius:20px;font-size:12px;color:var(--soft);">Aviation</span>
+        <span style="padding:5px 11px;border:1px solid var(--border);border-radius:20px;font-size:12px;color:var(--soft);">Formula 1</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- BRAND GRID — 23 brands, all with real logos and links -->
+  <div class="brands-section">
+    <div class="section-head">
+      <div class="section-label">Brand Partnerships</div>
+      <h2 class="section-title">33+ Brand <em>Collaborations</em></h2>
+      <p class="section-sub">Click any logo to view the published collaboration.</p>
+    </div>
+    <div class="brand-grid" id="brandGrid"><a class="brand-card" href="https://www.instagram.com/reel/DIt96zyTGN2/" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-apple.png" alt="Apple" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">Apple</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.instagram.com/reel/C5V3dB-O7BO/" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-dell.png" alt="Dell" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">Dell</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://news.lenovo.com/meet-joan-space-engineer-and-advocate-inspiring-minorities-to-pursue-stem-careers/" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-lenovo.png" alt="Lenovo" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">Lenovo</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.youtube.com/watch?v=90YP92A66YQ" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-pixar.png" alt="Pixar" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">Pixar</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.youtube.com/watch?v=90YP92A66YQ" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-lego.png" alt="LEGO" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">LEGO</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.youtube.com/watch?v=90YP92A66YQ" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-disney.png" alt="Disney" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">Disney</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.instagram.com/reel/CXollzMjPuJ/" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-bbc.png" alt="BBC" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">BBC</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.instagram.com/tv/CYeZzNSp8Zz/" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-mcdonalds.png" alt="McDonald's" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">McDonald's</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.instagram.com/reel/CVlD4DEJj2S/" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-hpe.png" alt="HPE" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">HPE</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.youtube.com/watch?v=x-lZpQvX-OE" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-gmc.png" alt="GMC" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">GMC</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.instagram.com/reel/DSVYPRQD081/" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-sandvik.png" alt="Sandvik" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">Sandvik</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.instagram.com/reel/DNqlKiuA7Ve/" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-thermofisher.png" alt="Thermo Fisher" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">Thermo Fisher</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.instagram.com/reel/DSApNABAB5e/" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-aiaa.png" alt="AIAA" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">AIAA</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.instagram.com/reel/DF8QMPCu7WP/" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-pg.png" alt="P&amp;G" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">P&amp;G</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.instagram.com/reel/DAdsecbusMQ/" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-metlife.png" alt="MetLife" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">MetLife</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.instagram.com/reel/C_gLphzOlj5/" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-otterbox.png" alt="OtterBox" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">OtterBox</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.instagram.com/reel/C6_rFDrRZTx/" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-coursehero.png" alt="Course Hero" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">Course Hero</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.instagram.com/reel/C3ajx50svij/" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-nih.png" alt="Natl Institutes of Health" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">Natl Institutes of Health</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.prnewswire.com/news-releases/free-florida-reading-program-partners-with-local-fifth-grader-and-inspiring-professionals-to-boost-state-literacy-rates-301776976.html" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-scholastic.png" alt="Scholastic" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">Scholastic</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.instagram.com/reel/CyQucV_OSVa/" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-urbandecay.png" alt="Urban Decay" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">Urban Decay</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.fandom.com/video/evxekwy3/sprite-zero-x-fandom-joan-marie-aka-yourfemaleengineer" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-sprite.png" alt="Sprite" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">Sprite</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.instagram.com/p/CVLLOrhgrjj/" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-melscience.png" alt="Mel Science" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">Mel Science</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.instagram.com/p/CVx7IxBvx6m/" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-wb.png" alt="WB" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">WB</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.youtube.com/shorts/HQ83hfLgyfk" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-cbs.png" alt="CBS Mission Unstoppable" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">CBS Mission Unstoppable</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.instagram.com/reel/DJXR9g_BuVK/" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-oishii.png" alt="Oishii" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">Oishii</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.instagram.com/reel/DVjRrgQiWxb/" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-f1.png" alt="Formula 1" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">Formula 1</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.instagram.com/reel/C-dY3iyv-B3/" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-movaglobes.png" alt="Mova Globes" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">Mova Globes</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.instagram.com/reel/DGV7LVHOIdl/" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-ifthen.png" alt="If/Then" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">If/Then</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.instagram.com/reel/DF53X-zPFyv/" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-ifly.png" alt="iFly" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">iFly</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.instagram.com/reel/C6MPNG4uku9/" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-xena.png" alt="Xena Workwear" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">Xena Workwear</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.instagram.com/reel/C_I3ltFueiR/" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-americorps.png" alt="AmeriCorps" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">AmeriCorps</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.instagram.com/reel/C6od67wOq4O/" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-inokim.png" alt="Inokim" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">Inokim</div><div class="brand-link-row">↗ View Collab</div></a><a class="brand-card" href="https://www.instagram.com/reel/C0KQ5qaurAp/" target="_blank" rel="noopener"><div class="brand-logo-circle"><img src="logo-kaplan.png" alt="Kaplan" style="max-width:100%;max-height:52px;object-fit:contain;display:block;"></div><div class="brand-name">Kaplan</div><div class="brand-link-row">↗ View Collab</div></a><div class="brand-card" style="cursor:default;border:1px dashed rgba(126,184,255,0.3);"><div class="brand-logo-circle" style="background:#f0f0f8;flex-direction:column;gap:4px;"><span style="font-size:28px;color:#9090b8;">✦</span><span style="font-size:9px;letter-spacing:2px;color:#9090b8;font-weight:700;">& MORE</span></div><div class="brand-name">And More</div><div class="brand-link-row" style="color:#9090b8;">Always Growing</div></div></div>
+</div></div>
+
+</main>
+
+</html>

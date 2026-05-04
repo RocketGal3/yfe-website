@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 120" width="420" height="120">
+  <defs>
+    <linearGradient id="planetGrad" x1="35%" y1="35%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4060cc"/>
+      <stop offset="55%" stop-color="#100840"/>
+      <stop offset="100%" stop-color="#060410"/>
+    </linearGradient>
+    <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#7eb8ff" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#7eb8ff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Glow -->
+  <circle cx="52" cy="60" r="46" fill="url(#glowGrad)"/>
+
+  <!-- Orbit rings -->
+  <ellipse cx="52" cy="60" rx="44" ry="44" fill="none" stroke="#2d2880" stroke-width="0.8"/>
+  <ellipse cx="52" cy="60" rx="44" ry="17" fill="none" stroke="#3d38a0" stroke-width="0.8"/>
+
+  <!-- Planet -->
+  <circle cx="52" cy="60" r="28" fill="url(#planetGrad)"/>
+  <line x1="26" y1="55" x2="78" y2="65" stroke="rgba(200,220,255,0.2)" stroke-width="1.5"/>
+
+  <!-- Orbiting dot -->
+  <circle cx="52" cy="17" r="4" fill="#8baeff" opacity="0.9"/>
+  <circle cx="52" cy="17" r="6" fill="none" stroke="#8baeff" stroke-width="0.8" opacity="0.4"/>
+
+  <!-- Letter J on planet -->
+  <text x="52" y="67" font-family="Georgia,serif" font-size="22" font-weight="700" fill="#c8d8ff" text-anchor="middle">J</text>
+
+  <!-- Corner accents -->
+  <path d="M8,8 L8,20" stroke="#8baeff" stroke-width="1" opacity="0.6"/>
+  <path d="M8,8 L20,8" stroke="#8baeff" stroke-width="1" opacity="0.6"/>
+  <path d="M96,112 L96,100" stroke="#8baeff" stroke-width="1" opacity="0.6"/>
+  <path d="M96,112 L84,112" stroke="#8baeff" stroke-width="1" opacity="0.6"/>
+
+  <!-- Name: JOAN -->
+  <text x="116" y="52" font-family="Georgia,serif" font-size="38" font-weight="700" letter-spacing="4" fill="#eeecff">JOAN</text>
+
+  <!-- Divider line with star -->
+  <line x1="116" y1="64" x2="400" y2="64" stroke="#2d2880" stroke-width="0.8"/>
+  <text x="258" y="68" font-family="sans-serif" font-size="8" fill="#8baeff" text-anchor="middle">✦</text>
+
+  <!-- Surname: MELENDEZ MISNER -->
+  <text x="116" y="86" font-family="Georgia,serif" font-size="18" font-weight="300" font-style="italic" letter-spacing="6" fill="#8880cc">Melendez Misner</text>
+
+  <!-- Handle -->
+  <text x="116" y="106" font-family="Arial,sans-serif" font-size="9" letter-spacing="4" fill="#4a5888">@YOURFEMALENGINEER</text>
+</svg>

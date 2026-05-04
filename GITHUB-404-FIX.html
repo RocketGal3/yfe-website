@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitHub Pages Fix — Step by Step</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#0e0c28;--card:#1e1a50;--border:#2d2870;
+  --soft:#8880cc;--text:#d8d4f4;--bright:#eeecff;
+  --accent:#7eb8ff;--gold:#f0c060;--green:#44ddaa;--purple:#9966ff;--red:#ff6680;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--black);color:var(--text);font-family:'Rajdhani',sans-serif;line-height:1.7;}
+
+.hero{background:linear-gradient(135deg,#1a1060,#0d1840);padding:56px 60px;border-bottom:1px solid var(--border);}
+.hero-tag{font-size:10px;letter-spacing:4px;color:var(--red);text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.hero-tag::before{content:'⚠';font-size:14px;}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:700;color:var(--bright);letter-spacing:-1px;margin-bottom:12px;}
+.hero-title em{color:var(--accent);font-style:italic;font-weight:300;}
+.hero-sub{font-size:15px;color:var(--soft);max-width:680px;line-height:1.8;}
+.hero-sub strong{color:var(--text);}
+
+.why-box{
+  display:flex;align-items:flex-start;gap:16px;
+  background:rgba(255,102,128,0.08);border:1px solid rgba(255,102,128,0.25);
+  border-left:3px solid var(--red);border-radius:8px;
+  padding:20px 24px;margin:28px 0 0;font-size:13px;color:var(--soft);line-height:1.8;max-width:700px;
+}
+.why-box strong{color:var(--red);}
+
+.content{max-width:860px;margin:0 auto;padding:56px 40px;}
+
+/* STEP */
+.step{margin-bottom:48px;}
+.step-header{display:flex;align-items:center;gap:16px;margin-bottom:20px;}
+.step-num{
+  width:44px;height:44px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--purple),var(--accent));
+  color:#fff;font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+}
+.step-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--bright);letter-spacing:-.3px;}
+
+/* SCREENSHOT MOCKUP */
+.screen{
+  background:#0a0818;border:1px solid var(--border);border-radius:10px;
+  overflow:hidden;margin:16px 0;
+}
+.screen-bar{
+  background:#161330;padding:10px 16px;
+  display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);
+}
+.screen-dots{display:flex;gap:5px;}
+.screen-dot{width:10px;height:10px;border-radius:50%;}
+.screen-url{
+  flex:1;background:#0d0b25;border:1px solid var(--border);border-radius:4px;
+  padding:4px 12px;font-size:11px;color:var(--soft);font-family:monospace;
+}
+.screen-body{padding:20px 24px;}
+
+/* ACTION ROWS */
+.action{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:14px 18px;background:rgba(30,26,80,0.6);
+  border:1px solid var(--border);border-radius:8px;margin:8px 0;
+}
+.action-num{
+  width:26px;height:26px;border-radius:50%;background:var(--purple);
+  color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;
+  justify-content:center;flex-shrink:0;margin-top:1px;
+}
+.action-text{font-size:13px;color:var(--text);flex:1;line-height:1.6;}
+.action-text .click{color:var(--accent);font-weight:600;}
+.action-text .type{
+  background:rgba(126,184,255,0.1);border:1px solid rgba(126,184,255,0.2);
+  padding:2px 8px;border-radius:4px;font-family:monospace;font-size:12px;color:var(--accent);
+}
+.action-detail{font-size:11px;color:var(--soft);margin-top:4px;}
+
+/* BOXES */
+.box{border-radius:8px;padding:16px 20px;margin:16px 0;font-size:13px;line-height:1.8;}
+.box-green{background:rgba(68,221,170,0.07);border:1px solid rgba(68,221,170,0.22);border-left:3px solid var(--green);color:var(--soft);}
+.box-green strong{color:var(--green);}
+.box-blue{background:rgba(126,184,255,0.07);border:1px solid rgba(126,184,255,0.18);border-left:3px solid var(--accent);color:var(--soft);}
+.box-blue strong{color:var(--accent);}
+.box-gold{background:rgba(240,192,96,0.07);border:1px solid rgba(240,192,96,0.22);border-left:3px solid var(--gold);color:var(--soft);}
+.box-gold strong{color:var(--gold);}
+.box-red{background:rgba(255,102,128,0.07);border:1px solid rgba(255,102,128,0.22);border-left:3px solid var(--red);color:var(--soft);}
+.box-red strong{color:var(--red);}
+
+code{background:rgba(126,184,255,0.1);border:1px solid rgba(126,184,255,0.2);padding:2px 8px;border-radius:4px;font-family:monospace;font-size:12px;color:var(--accent);}
+
+/* UI ELEMENT MOCKUPS */
+.ui-button{
+  display:inline-flex;align-items:center;gap:6px;
+  background:linear-gradient(135deg,#2d28a0,#1a3080);
+  border:1px solid var(--border);border-radius:5px;
+  padding:6px 14px;font-size:12px;color:var(--accent);
+  font-family:'Rajdhani',sans-serif;font-weight:600;letter-spacing:1px;
+  margin:0 3px;
+}
+.ui-tab{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(30,26,80,0.8);border:1px solid var(--border);
+  border-radius:4px 4px 0 0;padding:5px 14px;font-size:11px;color:var(--soft);
+}
+.ui-tab.active{background:var(--card);color:var(--text);border-bottom-color:var(--card);}
+
+.nav-mock{
+  background:#0d0b25;border-bottom:1px solid var(--border);
+  padding:8px 16px;display:flex;gap:6px;align-items:center;
+}
+.nav-mock-item{
+  padding:4px 12px;border-radius:4px;font-size:11px;
+  font-family:'Rajdhani',sans-serif;color:var(--soft);
+}
+.nav-mock-item.active{background:rgba(126,184,255,0.15);color:var(--accent);}
+
+/* FILE LIST */
+.file-row{
+  display:flex;align-items:center;gap:12px;padding:10px 14px;
+  background:rgba(20,16,60,0.6);border:1px solid var(--border);border-radius:6px;margin:6px 0;
+  font-size:13px;
+}
+.file-icon{font-size:16px;flex-shrink:0;}
+.file-name{color:var(--text);font-family:monospace;flex:1;}
+.file-badge{font-size:8px;letter-spacing:2px;padding:3px 8px;border-radius:3px;text-transform:uppercase;}
+.fb-html{background:rgba(126,184,255,0.12);color:var(--accent);border:1px solid rgba(126,184,255,0.25);}
+.fb-css{background:rgba(153,102,255,0.12);color:var(--purple);border:1px solid rgba(153,102,255,0.25);}
+.fb-js{background:rgba(240,192,96,0.12);color:var(--gold);border:1px solid rgba(240,192,96,0.25);}
+.fb-img{background:rgba(68,221,170,0.12);color:var(--green);border:1px solid rgba(68,221,170,0.25);}
+
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:40px 0;}
+
+/* SUCCESS */
+.success-final{
+  background:linear-gradient(135deg,rgba(68,221,170,0.1),rgba(100,70,220,0.1));
+  border:1px solid rgba(68,221,170,0.25);border-radius:14px;padding:40px;text-align:center;
+}
+.success-final h2{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:var(--bright);margin-bottom:10px;}
+.success-final p{font-size:14px;color:var(--soft);line-height:1.8;}
+.success-final strong{color:var(--green);}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">404 Error Fix</div>
+  <h1 class="hero-title">GitHub Pages —<br><em>Step by Step</em></h1>
+  <p class="hero-sub">Getting a 404 when clicking page links is the most common GitHub Pages issue. <strong>The fix is simple</strong> — your files just need to be uploaded correctly and in the right place. Follow every step below exactly.</p>
+
+  <div class="why-box">
+    <div>
+      <strong>Why are you getting a 404?</strong><br>
+      GitHub Pages serves files by their exact filename. If a file isn't uploaded, or is in a subfolder by accident, the link breaks. The most common causes are: (1) files uploaded inside a subfolder instead of the root, (2) the wrong branch selected, or (3) GitHub Pages not enabled yet. This guide fixes all three.
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- STEP 1 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">1</div>
+      <div class="step-title">Go to Your GitHub Repository</div>
+    </div>
+
+    <div class="action">
+      <div class="action-num">1</div>
+      <div>
+        <div class="action-text">Open your browser and go to <span class="click">github.com</span></div>
+      </div>
+    </div>
+    <div class="action">
+      <div class="action-num">2</div>
+      <div>
+        <div class="action-text">Click your <span class="click">profile picture</span> in the top right → click <span class="click">Your repositories</span></div>
+      </div>
+    </div>
+    <div class="action">
+      <div class="action-num">3</div>
+      <div>
+        <div class="action-text">Click on your repo — it should be named something like <code>yourfemalengineer.github.io</code></div>
+      </div>
+    </div>
+
+    <div class="box box-red" style="margin-top:16px;">
+      <strong>Don't have a repo yet?</strong> Go back to the Setup Guide (SETUP-GUIDE.html) and follow Step 2 first to create your repository.
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- STEP 2 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">2</div>
+      <div class="step-title">Check That ALL Files Are in the Root (Not a Subfolder)</div>
+    </div>
+
+    <p style="font-size:14px;color:var(--soft);margin-bottom:16px;">This is the #1 cause of 404 errors. When you upload a zip or a folder, GitHub sometimes puts all files inside a subfolder. Your files must be at the TOP LEVEL of the repo — not inside any folder.</p>
+
+    <div class="screen">
+      <div class="screen-bar">
+        <div class="screen-dots"><div class="screen-dot" style="background:#ff5f57;"></div><div class="screen-dot" style="background:#febc2e;"></div><div class="screen-dot" style="background:#28c840;"></div></div>
+        <div class="screen-url">github.com/yourname/yourfemalengineer.github.io</div>
+      </div>
+      <div class="screen-body">
+        <p style="font-size:11px;color:var(--soft);margin-bottom:12px;letter-spacing:1px;">✅ CORRECT — files at root level (what you want to see):</p>
+        <div class="file-row"><div class="file-icon">📄</div><div class="file-name">index.html</div><span class="file-badge fb-html">html</span></div>
+        <div class="file-row"><div class="file-icon">📄</div><div class="file-name">about.html</div><span class="file-badge fb-html">html</span></div>
+        <div class="file-row"><div class="file-icon">📄</div><div class="file-name">contact.html</div><span class="file-badge fb-html">html</span></div>
+        <div class="file-row"><div class="file-icon">📄</div><div class="file-name">style.css</div><span class="file-badge fb-css">css</span></div>
+        <div class="file-row"><div class="file-icon">📄</div><div class="file-name">shared.js</div><span class="file-badge fb-js">js</span></div>
+        <div class="file-row"><div class="file-icon">🖼</div><div class="file-name">logo.png</div><span class="file-badge fb-img">img</span></div>
+        <div class="file-row"><div class="file-icon">🖼</div><div class="file-name">photo-portrait.jpg</div><span class="file-badge fb-img">img</span></div>
+      </div>
+    </div>
+
+    <div class="screen" style="margin-top:16px;">
+      <div class="screen-bar">
+        <div class="screen-dots"><div class="screen-dot" style="background:#ff5f57;"></div><div class="screen-dot" style="background:#febc2e;"></div><div class="screen-dot" style="background:#28c840;"></div></div>
+        <div class="screen-url">github.com/yourname/yourfemalengineer.github.io</div>
+      </div>
+      <div class="screen-body">
+        <p style="font-size:11px;color:var(--red);margin-bottom:12px;letter-spacing:1px;">❌ WRONG — files inside a subfolder (causes 404):</p>
+        <div class="file-row" style="border-color:rgba(255,102,128,0.3);">
+          <div class="file-icon">📁</div>
+          <div class="file-name" style="color:var(--red);">github-pages-export /</div>
+          <span style="font-size:11px;color:var(--soft);">← all your files are stuck in here</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="box box-gold" style="margin-top:16px;">
+      <strong>If you see a folder instead of your files:</strong> Click into the folder, select all files, and move them to the root. OR delete everything and re-upload — but this time unzip first and drag the individual files (not the folder).
+    </div>
+
+    <div class="box box-blue">
+      <strong>How to check:</strong> When you open your repo on GitHub, you should see <code>index.html</code> listed immediately — not a folder name. If you see a folder name like <code>github-pages-export</code>, your files are in the wrong place.
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- STEP 3 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">3</div>
+      <div class="step-title">How to Upload Files Correctly</div>
+    </div>
+
+    <p style="font-size:14px;color:var(--soft);margin-bottom:16px;">Follow these steps exactly to upload all your files to the root level.</p>
+
+    <div class="action">
+      <div class="action-num">1</div>
+      <div>
+        <div class="action-text"><strong>On your computer</strong> — find the <code>yfe-final.zip</code> file I gave you</div>
+        <div class="action-detail">Right-click it → Extract All (Windows) or double-click (Mac) to unzip it</div>
+      </div>
+    </div>
+    <div class="action">
+      <div class="action-num">2</div>
+      <div>
+        <div class="action-text">Open the unzipped folder → open the <code>github-pages-export</code> folder inside it</div>
+        <div class="action-detail">You should now see all your files: index.html, about.html, style.css, logo.png, all the photos, etc.</div>
+      </div>
+    </div>
+    <div class="action">
+      <div class="action-num">3</div>
+      <div>
+        <div class="action-text"><strong>Select ALL files</strong> inside that folder — press <code>Ctrl+A</code> (Windows) or <code>Cmd+A</code> (Mac)</div>
+        <div class="action-detail">Make sure you select the FILES, not the folder itself</div>
+      </div>
+    </div>
+    <div class="action">
+      <div class="action-num">4</div>
+      <div>
+        <div class="action-text">Go to your GitHub repo in your browser</div>
+      </div>
+    </div>
+    <div class="action">
+      <div class="action-num">5</div>
+      <div>
+        <div class="action-text">Click <span class="click">Add file</span> → <span class="click">Upload files</span></div>
+      </div>
+    </div>
+    <div class="action">
+      <div class="action-num">6</div>
+      <div>
+        <div class="action-text"><strong>Drag all your selected files</strong> directly into the upload box on GitHub</div>
+        <div class="action-detail">You should see all filenames appear — index.html, about.html, all photos, etc. If you see a folder name, start over and drag individual files instead</div>
+      </div>
+    </div>
+    <div class="action">
+      <div class="action-num">7</div>
+      <div>
+        <div class="action-text">Scroll down and click the green <span class="click">Commit changes</span> button</div>
+        <div class="action-detail">Wait about 30–60 seconds for GitHub to process the upload</div>
+      </div>
+    </div>
+
+    <div class="box box-green">
+      <strong>After committing:</strong> Refresh your repo page. You should now see <code>index.html</code> and all your other files listed at the top level with no folders in between.
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- STEP 4 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">4</div>
+      <div class="step-title">Make Sure GitHub Pages Is Turned On</div>
+    </div>
+
+    <div class="action">
+      <div class="action-num">1</div>
+      <div>
+        <div class="action-text">In your repo, click <span class="click">Settings</span> — it's in the top tab row</div>
+      </div>
+    </div>
+    <div class="action">
+      <div class="action-num">2</div>
+      <div>
+        <div class="action-text">In the left sidebar, scroll down and click <span class="click">Pages</span></div>
+      </div>
+    </div>
+    <div class="action">
+      <div class="action-num">3</div>
+      <div>
+        <div class="action-text">Under <strong>Source</strong>, make sure it says <span class="click">Deploy from a branch</span></div>
+        <div class="action-detail">If it says "None", click the dropdown and select "Deploy from a branch"</div>
+      </div>
+    </div>
+    <div class="action">
+      <div class="action-num">4</div>
+      <div>
+        <div class="action-text">Under Branch, select <span class="click">main</span> and folder <span class="click">/ (root)</span> → click <span class="click">Save</span></div>
+        <div class="action-detail">⚠️ The folder MUST be set to / (root) — not /docs or any subfolder</div>
+      </div>
+    </div>
+    <div class="action">
+      <div class="action-num">5</div>
+      <div>
+        <div class="action-text">Wait 1–2 minutes, then refresh the Settings → Pages screen</div>
+        <div class="action-detail">You should see a green banner: "Your site is live at https://yourname.github.io"</div>
+      </div>
+    </div>
+
+    <div class="screen" style="margin-top:16px;">
+      <div class="screen-bar">
+        <div class="screen-dots"><div class="screen-dot" style="background:#ff5f57;"></div><div class="screen-dot" style="background:#febc2e;"></div><div class="screen-dot" style="background:#28c840;"></div></div>
+        <div class="screen-url">github.com/yourname/yourfemalengineer.github.io/settings/pages</div>
+      </div>
+      <div class="screen-body">
+        <div style="background:rgba(68,221,170,0.1);border:1px solid rgba(68,221,170,0.3);border-radius:6px;padding:14px 18px;margin-bottom:16px;">
+          <div style="font-size:12px;color:var(--green);font-weight:600;margin-bottom:4px;">✅ Your site is live at</div>
+          <div style="font-size:13px;color:var(--accent);font-family:monospace;">https://yourfemalengineer.github.io</div>
+        </div>
+        <div style="font-size:12px;color:var(--soft);margin-bottom:8px;">Source</div>
+        <div style="display:flex;gap:10px;align-items:center;">
+          <div style="background:#161330;border:1px solid var(--border);border-radius:5px;padding:6px 14px;font-size:12px;color:var(--text);">main ▾</div>
+          <div style="background:#161330;border:1px solid var(--border);border-radius:5px;padding:6px 14px;font-size:12px;color:var(--text);">/ (root) ▾</div>
+          <div style="background:#238636;border-radius:5px;padding:6px 14px;font-size:12px;color:#fff;">Save</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- STEP 5 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">5</div>
+      <div class="step-title">Test Your Site — Page by Page</div>
+    </div>
+
+    <p style="font-size:14px;color:var(--soft);margin-bottom:16px;">Once GitHub Pages says your site is live, test each page directly in your browser using these URLs. Replace <code>yourname</code> with your actual GitHub username.</p>
+
+    <div class="action">
+      <div class="action-num">🏠</div>
+      <div>
+        <div class="action-text">Home page: <code>https://yourname.github.io/</code> or <code>https://yourname.github.io/index.html</code></div>
+      </div>
+    </div>
+    <div class="action">
+      <div class="action-num">👩</div>
+      <div>
+        <div class="action-text">About page: <code>https://yourname.github.io/about.html</code></div>
+      </div>
+    </div>
+    <div class="action">
+      <div class="action-num">📱</div>
+      <div>
+        <div class="action-text">Content page: <code>https://yourname.github.io/content.html</code></div>
+      </div>
+    </div>
+    <div class="action">
+      <div class="action-num">🎤</div>
+      <div>
+        <div class="action-text">Speaking page: <code>https://yourname.github.io/speaking.html</code></div>
+      </div>
+    </div>
+    <div class="action">
+      <div class="action-num">✉</div>
+      <div>
+        <div class="action-text">Contact page: <code>https://yourname.github.io/contact.html</code></div>
+      </div>
+    </div>
+    <div class="action">
+      <div class="action-num">🚀</div>
+      <div>
+        <div class="action-text">Mission Control: <code>https://yourname.github.io/mission-control.html</code></div>
+      </div>
+    </div>
+
+    <div class="box box-blue" style="margin-top:16px;">
+      <strong>Important:</strong> On GitHub Pages, links between pages use the full filename — <code>about.html</code>, <code>contact.html</code>, etc. All your nav links are already set up this way, so clicking the nav should work perfectly once the files are uploaded correctly.
+    </div>
+
+    <div class="box box-gold">
+      <strong>Still getting a 404 on a specific page?</strong> Go back to your repo and check that file exists at the root level. For example if <code>about.html</code> gives a 404, search for <code>about.html</code> in your repo — if it's missing, upload it again following Step 3.
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- STEP 6: GoDaddy -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">6</div>
+      <div class="step-title">Connect Your GoDaddy Domain (Optional — Do This Last)</div>
+    </div>
+
+    <p style="font-size:14px;color:var(--soft);margin-bottom:16px;">Only do this step <strong>after</strong> your site is working on the .github.io URL. Don't connect your domain until everything looks correct.</p>
+
+    <div class="action">
+      <div class="action-num">1</div>
+      <div>
+        <div class="action-text">In GitHub: Settings → Pages → <strong>Custom domain</strong> field</div>
+        <div class="action-detail">Type your domain exactly: yourfemalengineer.com (use your actual domain)</div>
+      </div>
+    </div>
+    <div class="action">
+      <div class="action-num">2</div>
+      <div>
+        <div class="action-text">Click <span class="click">Save</span></div>
+        <div class="action-detail">GitHub will create a CNAME file in your repo automatically — don't delete it</div>
+      </div>
+    </div>
+    <div class="action">
+      <div class="action-num">3</div>
+      <div>
+        <div class="action-text">Log into <span class="click">godaddy.com</span> → My Products → DNS (next to your domain)</div>
+      </div>
+    </div>
+    <div class="action">
+      <div class="action-num">4</div>
+      <div>
+        <div class="action-text">Delete any existing <strong>A records</strong> (the ones pointing to GoDaddy's IP)</div>
+        <div class="action-detail">Look for records with Type "A" and Name "@" — delete all of them</div>
+      </div>
+    </div>
+    <div class="action">
+      <div class="action-num">5</div>
+      <div>
+        <div class="action-text">Add these <strong>4 new A records</strong> — one at a time:</div>
+        <div style="margin-top:10px;background:#0a0818;border:1px solid var(--border);border-radius:6px;overflow:hidden;">
+          <div style="display:grid;grid-template-columns:80px 80px 1fr;gap:0;font-size:10px;letter-spacing:1px;color:var(--soft);padding:8px 14px;border-bottom:1px solid var(--border);">
+            <span>TYPE</span><span>NAME</span><span>VALUE</span>
+          </div>
+          <div style="display:grid;grid-template-columns:80px 80px 1fr;padding:8px 14px;font-family:monospace;font-size:12px;color:var(--text);border-bottom:1px solid rgba(45,40,112,0.4);">
+            <span>A</span><span>@</span><span>185.199.108.153</span>
+          </div>
+          <div style="display:grid;grid-template-columns:80px 80px 1fr;padding:8px 14px;font-family:monospace;font-size:12px;color:var(--text);border-bottom:1px solid rgba(45,40,112,0.4);">
+            <span>A</span><span>@</span><span>185.199.109.153</span>
+          </div>
+          <div style="display:grid;grid-template-columns:80px 80px 1fr;padding:8px 14px;font-family:monospace;font-size:12px;color:var(--text);border-bottom:1px solid rgba(45,40,112,0.4);">
+            <span>A</span><span>@</span><span>185.199.110.153</span>
+          </div>
+          <div style="display:grid;grid-template-columns:80px 80px 1fr;padding:8px 14px;font-family:monospace;font-size:12px;color:var(--text);border-bottom:1px solid rgba(45,40,112,0.4);">
+            <span>A</span><span>@</span><span>185.199.111.153</span>
+          </div>
+          <div style="display:grid;grid-template-columns:80px 80px 1fr;padding:8px 14px;font-family:monospace;font-size:12px;color:var(--text);">
+            <span>CNAME</span><span>www</span><span>yourfemalengineer.github.io</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="action">
+      <div class="action-num">6</div>
+      <div>
+        <div class="action-text">Save all records and <strong>wait 15–30 minutes</strong></div>
+        <div class="action-detail">DNS takes time to update worldwide. Go make a coffee ☕ — it'll be ready when you get back.</div>
+      </div>
+    </div>
+    <div class="action">
+      <div class="action-num">7</div>
+      <div>
+        <div class="action-text">Back in GitHub → Settings → Pages → check <span class="click">Enforce HTTPS</span></div>
+        <div class="action-detail">This gives you the secure padlock for free</div>
+      </div>
+    </div>
+
+    <div class="box box-green" style="margin-top:16px;">
+      <strong>You're live!</strong> Visit your domain — it should show your full site. If it still shows a GoDaddy parked page, wait another 30 minutes and try again. DNS can take up to 24 hours in rare cases.
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- COMMON ERRORS -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">❓</div>
+      <div class="step-title">Common Errors & Quick Fixes</div>
+    </div>
+
+    <div class="box box-red" style="margin-bottom:12px;">
+      <strong>404 on every page</strong> → Your files are in a subfolder. Go to Step 3 and re-upload, dragging individual files not the folder.
+    </div>
+    <div class="box box-red" style="margin-bottom:12px;">
+      <strong>404 on one specific page</strong> → That file is missing. Check your repo for that filename and upload it if it's not there.
+    </div>
+    <div class="box box-gold" style="margin-bottom:12px;">
+      <strong>Site shows but no styles / looks broken</strong> → <code>style.css</code> didn't upload. Go back to your repo and check — if it's missing, upload it.
+    </div>
+    <div class="box box-gold" style="margin-bottom:12px;">
+      <strong>Logo or photos not showing</strong> → Image files didn't upload. In your repo, look for <code>logo.png</code> and all the <code>photo-*.jpg</code> files. Upload any that are missing.
+    </div>
+    <div class="box box-blue" style="margin-bottom:12px;">
+      <strong>Site not updating after changes</strong> → Hard refresh your browser: <code>Ctrl+Shift+R</code> (Windows) or <code>Cmd+Shift+R</code> (Mac). GitHub Pages can take 1–2 minutes to rebuild.
+    </div>
+    <div class="box box-blue">
+      <strong>Custom domain not working</strong> → Check your GoDaddy DNS records are exactly as shown in Step 6. Make sure the CNAME record points to <code>yourname.github.io</code> with your actual GitHub username.
+    </div>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="success-final">
+    <h2>🚀 You've Got This, Joan!</h2>
+    <p>The most important thing: <strong>get all 9+ files uploaded to the root level of your repo</strong> and enable GitHub Pages from the main branch. Once that's done, everything links together automatically. Your site will be live and free forever.</p>
+  </div>
+
+</div>
+</body>
+</html>

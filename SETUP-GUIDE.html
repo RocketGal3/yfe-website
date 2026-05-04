@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitHub Pages + GoDaddy Setup Guide — @YourFemaleEngineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#12103a;--card:#1e1a5a;--border:#2d2880;
+  --soft:#8880cc;--text:#d8d4f4;--bright:#eeecff;
+  --accent:#7eb8ff;--gold:#f0c060;--green:#44ddaa;--purple:#9966ff;--red:#ff6680;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--black);color:var(--text);font-family:'Rajdhani',sans-serif;line-height:1.7;}
+
+.hero{background:linear-gradient(135deg,#1a1060,#0d1840);padding:60px;border-bottom:1px solid var(--border);}
+.hero-tag{font-size:10px;letter-spacing:4px;color:var(--green);text-transform:uppercase;margin-bottom:12px;}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:700;color:var(--bright);letter-spacing:-1px;margin-bottom:12px;}
+.hero-title em{color:var(--accent);font-style:italic;font-weight:300;}
+.hero-sub{font-size:15px;color:var(--soft);max-width:640px;line-height:1.8;}
+.hero-sub strong{color:var(--green);}
+
+.cost-banner{display:flex;align-items:center;gap:20px;background:rgba(68,221,170,0.08);border:1px solid rgba(68,221,170,0.25);border-radius:10px;padding:20px 28px;margin:32px 0 0;}
+.cost-num{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:700;color:var(--green);line-height:1;}
+.cost-label{font-size:13px;color:var(--soft);line-height:1.6;}
+.cost-label strong{color:var(--text);}
+
+.content{max-width:900px;margin:0 auto;padding:60px 40px;}
+
+h2{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;color:var(--bright);margin:52px 0 20px;letter-spacing:-.5px;display:flex;align-items:center;gap:14px;}
+.step-badge{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--accent));color:#fff;font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+h3{font-size:12px;font-weight:600;color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin:24px 0 10px;}
+p{font-size:14px;color:var(--soft);margin-bottom:14px;line-height:1.8;}
+p strong{color:var(--text);}
+a{color:var(--accent);}
+
+.box{border-radius:8px;padding:18px 22px;margin:16px 0;font-size:13px;line-height:1.8;}
+.box-green{background:rgba(68,221,170,0.07);border:1px solid rgba(68,221,170,0.25);border-left:3px solid var(--green);color:var(--soft);}
+.box-green strong{color:var(--green);}
+.box-blue{background:rgba(126,184,255,0.07);border:1px solid rgba(126,184,255,0.2);border-left:3px solid var(--accent);color:var(--soft);}
+.box-blue strong{color:var(--accent);}
+.box-gold{background:rgba(240,192,96,0.07);border:1px solid rgba(240,192,96,0.25);border-left:3px solid var(--gold);color:var(--soft);}
+.box-gold strong{color:var(--gold);}
+
+.step-visual{background:rgba(20,16,70,0.7);border:1px solid var(--border);border-radius:12px;padding:28px 32px;margin:20px 0;}
+.step-visual-title{font-size:10px;letter-spacing:3px;color:var(--purple);text-transform:uppercase;margin-bottom:16px;}
+
+.action-row{display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(30,26,90,0.6);border:1px solid var(--border);border-radius:8px;margin:8px 0;font-size:13px;color:var(--soft);}
+.action-icon{width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,rgba(126,184,255,0.2),rgba(153,102,255,0.2));display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.action-text{flex:1;color:var(--text);}
+.action-detail{font-size:11px;color:var(--soft);margin-top:2px;}
+
+code{background:rgba(126,184,255,0.1);border:1px solid rgba(126,184,255,0.2);padding:2px 8px;border-radius:4px;font-family:monospace;font-size:12px;color:var(--accent);}
+.code-block{background:rgba(10,8,40,0.8);border:1px solid var(--border);border-radius:8px;padding:16px 20px;font-family:monospace;font-size:13px;color:var(--green);line-height:2;margin:14px 0;white-space:pre-wrap;}
+
+.dns-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px;}
+.dns-table th{background:rgba(30,26,90,0.8);color:var(--accent);font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);}
+.dns-table td{padding:12px 14px;border-bottom:1px solid rgba(45,40,128,0.4);color:var(--soft);}
+.dns-table td strong{color:var(--text);font-family:monospace;}
+.dns-table tr:hover td{background:rgba(30,26,90,0.4);}
+
+.checklist{list-style:none;display:flex;flex-direction:column;gap:10px;margin:16px 0;}
+.checklist li{display:flex;align-items:flex-start;gap:12px;font-size:13px;color:var(--soft);padding:10px 14px;background:rgba(20,16,70,0.4);border:1px solid var(--border);border-radius:7px;}
+.checklist li .check{width:20px;height:20px;border:2px solid var(--border);border-radius:4px;flex-shrink:0;margin-top:1px;}
+.checklist li strong{color:var(--text);}
+
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:48px 0;}
+
+.files-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0;}
+.file-chip{display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(20,16,70,0.6);border:1px solid var(--border);border-radius:7px;font-size:12px;}
+.file-chip .ext{font-size:8px;letter-spacing:1px;padding:2px 6px;border-radius:3px;font-weight:600;flex-shrink:0;}
+.ext-html{background:rgba(126,184,255,0.15);color:var(--accent);}
+.ext-css{background:rgba(153,102,255,0.15);color:var(--purple);}
+.ext-js{background:rgba(240,192,96,0.15);color:var(--gold);}
+.ext-img{background:rgba(68,221,170,0.15);color:var(--green);}
+.file-chip span{color:var(--text);font-family:monospace;}
+
+.big-cta{background:linear-gradient(135deg,rgba(100,70,200,0.3),rgba(60,100,200,0.2));border:1px solid rgba(126,184,255,0.3);border-radius:14px;padding:40px;text-align:center;margin-top:48px;}
+.big-cta h3{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--bright);font-weight:700;margin-bottom:10px;letter-spacing:-.5px;}
+.big-cta p{font-size:14px;color:var(--soft);margin-bottom:0;}
+.big-cta strong{color:var(--green);}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">🚀 Launch Guide — GitHub Pages + GoDaddy</div>
+  <h1 class="hero-title">Your Site, Live.<br><em>For Free.</em></h1>
+  <p class="hero-sub">You already have a GoDaddy domain. GitHub Pages is <strong>100% free hosting with zero ads</strong>. This guide connects them in under an hour — no coding required.</p>
+
+  <div class="cost-banner">
+    <div class="cost-num">$0</div>
+    <div class="cost-label">
+      <strong>Monthly hosting cost</strong><br>
+      GitHub Pages is completely free forever. You only pay GoDaddy for your domain (~$15/yr) which you're already paying.
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- WHAT YOU NEED -->
+  <h2><span class="step-badge">📋</span> What You Need Before Starting</h2>
+  <div class="action-row"><div class="action-icon">✅</div><div><div class="action-text">Your GoDaddy domain name</div><div class="action-detail">e.g. yourfemalengineer.com — you already have this</div></div></div>
+  <div class="action-row"><div class="action-icon">✅</div><div><div class="action-text">Your website zip file</div><div class="action-detail">The yfe-github-pages.zip file from this package</div></div></div>
+  <div class="action-row"><div class="action-icon">☐</div><div><div class="action-text">A free GitHub account</div><div class="action-detail">Sign up at github.com — takes 2 minutes</div></div></div>
+  <div class="action-row"><div class="action-icon">☐</div><div><div class="action-text">15–30 minutes</div><div class="action-detail">That's all it takes from start to live site</div></div></div>
+
+  <div class="divider"></div>
+
+  <!-- STEP 1 -->
+  <h2><span class="step-badge">1</span> Create a Free GitHub Account</h2>
+  <p>Go to <strong>github.com</strong> and click "Sign Up". Use any email address. Choose the <strong>Free plan</strong> — it includes everything you need.</p>
+  <div class="box box-blue"><strong>Username tip:</strong> Your GitHub username becomes part of your default URL. Something like <code>yourfemalengineer</code> or <code>joanmelendez</code> works great.</div>
+
+  <div class="divider"></div>
+
+  <!-- STEP 2 -->
+  <h2><span class="step-badge">2</span> Create Your Repository</h2>
+  <p>A "repository" (repo) is just a folder on GitHub that holds your website files. Here's how to create one:</p>
+
+  <div class="step-visual">
+    <div class="step-visual-title">On GitHub.com</div>
+    <div class="action-row"><div class="action-icon">1</div><div><div class="action-text">Click the <strong>+ icon</strong> in the top right → "New repository"</div></div></div>
+    <div class="action-row"><div class="action-icon">2</div><div><div class="action-text">Repository name: <strong>yourfemalengineer.github.io</strong></div><div class="action-detail">⚠️ Important: the name must end in .github.io for GitHub Pages to work</div></div></div>
+    <div class="action-row"><div class="action-icon">3</div><div><div class="action-text">Set visibility to <strong>Public</strong></div><div class="action-detail">GitHub Pages requires public repos on the free plan</div></div></div>
+    <div class="action-row"><div class="action-icon">4</div><div><div class="action-text">Check <strong>"Add a README file"</strong></div><div class="action-detail">This initializes the repo so you can upload files immediately</div></div></div>
+    <div class="action-row"><div class="action-icon">5</div><div><div class="action-text">Click <strong>"Create repository"</strong></div></div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- STEP 3 -->
+  <h2><span class="step-badge">3</span> Upload Your Website Files</h2>
+  <p>Now upload all your site files to the repo. No code needed — GitHub has a drag-and-drop uploader.</p>
+
+  <div class="step-visual">
+    <div class="step-visual-title">Uploading Files</div>
+    <div class="action-row"><div class="action-icon">1</div><div><div class="action-text">In your new repo, click <strong>"Add file" → "Upload files"</strong></div></div></div>
+    <div class="action-row"><div class="action-icon">2</div><div><div class="action-text">Unzip your website package and <strong>drag all files</strong> into the upload area</div><div class="action-detail">Upload all files at once — don't upload the zip itself</div></div></div>
+    <div class="action-row"><div class="action-icon">3</div><div><div class="action-text">Scroll down and click <strong>"Commit changes"</strong></div><div class="action-detail">This saves and publishes your files</div></div></div>
+  </div>
+
+  <p>These are the files you need to upload:</p>
+  <div class="files-grid">
+    <div class="file-chip"><span class="ext ext-html">HTML</span><span>index.html</span></div>
+    <div class="file-chip"><span class="ext ext-html">HTML</span><span>about.html</span></div>
+    <div class="file-chip"><span class="ext ext-html">HTML</span><span>content.html</span></div>
+    <div class="file-chip"><span class="ext ext-html">HTML</span><span>speaking.html</span></div>
+    <div class="file-chip"><span class="ext ext-html">HTML</span><span>contact.html</span></div>
+    <div class="file-chip"><span class="ext ext-html">HTML</span><span>mission-control.html</span></div>
+    <div class="file-chip"><span class="ext ext-css">CSS</span><span>style.css</span></div>
+    <div class="file-chip"><span class="ext ext-js">JS</span><span>shared.js</span></div>
+    <div class="file-chip"><span class="ext ext-img">IMG</span><span>logo.png</span></div>
+  </div>
+
+  <div class="box box-gold"><strong>After uploading:</strong> Your site is immediately live at <code>yourfemalengineer.github.io</code> — test it before connecting your domain!</div>
+
+  <div class="divider"></div>
+
+  <!-- STEP 4 -->
+  <h2><span class="step-badge">4</span> Enable GitHub Pages</h2>
+  <p>GitHub Pages is usually auto-enabled for `.github.io` repos, but double-check:</p>
+
+  <div class="step-visual">
+    <div class="step-visual-title">In your GitHub repo</div>
+    <div class="action-row"><div class="action-icon">1</div><div><div class="action-text">Click <strong>Settings</strong> (top tab in your repo)</div></div></div>
+    <div class="action-row"><div class="action-icon">2</div><div><div class="action-text">Scroll down to <strong>"Pages"</strong> in the left sidebar</div></div></div>
+    <div class="action-row"><div class="action-icon">3</div><div><div class="action-text">Under "Source", select <strong>Deploy from a branch</strong></div></div></div>
+    <div class="action-row"><div class="action-icon">4</div><div><div class="action-text">Branch: <strong>main</strong> / folder: <strong>/ (root)</strong> → click Save</div></div></div>
+    <div class="action-row"><div class="action-icon">5</div><div><div class="action-text">You'll see: <strong>"Your site is live at yourfemalengineer.github.io"</strong> ✅</div></div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- STEP 5 -->
+  <h2><span class="step-badge">5</span> Add Your Custom Domain in GitHub</h2>
+  <p>Tell GitHub to use your GoDaddy domain instead of the .github.io URL:</p>
+
+  <div class="step-visual">
+    <div class="step-visual-title">Still in GitHub → Settings → Pages</div>
+    <div class="action-row"><div class="action-icon">1</div><div><div class="action-text">Find the <strong>"Custom domain"</strong> field</div></div></div>
+    <div class="action-row"><div class="action-icon">2</div><div><div class="action-text">Type your domain: <strong>yourfemalengineer.com</strong> (use your actual domain)</div></div></div>
+    <div class="action-row"><div class="action-icon">3</div><div><div class="action-text">Click <strong>Save</strong></div></div></div>
+    <div class="action-row"><div class="action-icon">4</div><div><div class="action-text">Check <strong>"Enforce HTTPS"</strong> once it appears</div><div class="action-detail">This gives you the padlock and secure connection for free</div></div></div>
+  </div>
+
+  <div class="box box-blue"><strong>Note:</strong> GitHub will add a file called <code>CNAME</code> to your repo automatically. Don't delete it — it's what tells GitHub which domain to use.</div>
+
+  <div class="divider"></div>
+
+  <!-- STEP 6 -->
+  <h2><span class="step-badge">6</span> Point Your GoDaddy Domain to GitHub</h2>
+  <p>This is the final step — you're telling GoDaddy "send visitors to GitHub Pages." Log into your GoDaddy account and find your DNS settings.</p>
+
+  <div class="step-visual">
+    <div class="step-visual-title">In GoDaddy → My Products → Your Domain → DNS</div>
+    <div class="action-row"><div class="action-icon">1</div><div><div class="action-text">Log into <strong>godaddy.com</strong> and go to "My Products"</div></div></div>
+    <div class="action-row"><div class="action-icon">2</div><div><div class="action-text">Find your domain → click <strong>"DNS"</strong> or "Manage DNS"</div></div></div>
+    <div class="action-row"><div class="action-icon">3</div><div><div class="action-text">Delete any existing <strong>A records</strong> pointing to GoDaddy's servers</div><div class="action-detail">These are the old ones — you're replacing them with GitHub's</div></div></div>
+    <div class="action-row"><div class="action-icon">4</div><div><div class="action-text">Add these <strong>4 new A records</strong> pointing to GitHub:</div></div></div>
+  </div>
+
+  <table class="dns-table">
+    <tr>
+      <th>Type</th>
+      <th>Name</th>
+      <th>Value (GitHub's IP)</th>
+      <th>TTL</th>
+    </tr>
+    <tr><td>A Record</td><td><strong>@</strong></td><td><strong>185.199.108.153</strong></td><td>600</td></tr>
+    <tr><td>A Record</td><td><strong>@</strong></td><td><strong>185.199.109.153</strong></td><td>600</td></tr>
+    <tr><td>A Record</td><td><strong>@</strong></td><td><strong>185.199.110.153</strong></td><td>600</td></tr>
+    <tr><td>A Record</td><td><strong>@</strong></td><td><strong>185.199.111.153</strong></td><td>600</td></tr>
+    <tr><td>CNAME</td><td><strong>www</strong></td><td><strong>yourfemalengineer.github.io</strong></td><td>600</td></tr>
+  </table>
+
+  <div class="box box-gold"><strong>Wait 15–30 minutes</strong> after saving DNS changes. DNS updates take time to spread across the internet. Once done, visiting your domain will load your GitHub Pages site automatically.</div>
+
+  <div class="box box-green"><strong>✅ You're live!</strong> Once DNS propagates, <code>yourfemalengineer.com</code> will show your full custom site — for free, forever, with no ads.</div>
+
+  <div class="divider"></div>
+
+  <!-- UPDATING YOUR SITE -->
+  <h2><span class="step-badge">✏️</span> How to Update Your Site Later</h2>
+  <p>Whenever you want to make changes — update stats, add content, tweak copy — it's simple:</p>
+
+  <div class="action-row"><div class="action-icon">1</div><div><div class="action-text">Go to your repo on <strong>github.com</strong></div></div></div>
+  <div class="action-row"><div class="action-icon">2</div><div><div class="action-text">Click the file you want to change (e.g. <code>about.html</code>)</div></div></div>
+  <div class="action-row"><div class="action-icon">3</div><div><div class="action-text">Click the <strong>pencil icon</strong> to edit</div></div></div>
+  <div class="action-row"><div class="action-icon">4</div><div><div class="action-text">Make your changes → click <strong>"Commit changes"</strong></div></div></div>
+  <div class="action-row"><div class="action-icon">5</div><div><div class="action-text">Your site updates live within <strong>60 seconds</strong></div></div></div>
+
+  <div class="box box-blue"><strong>Updating your social stats</strong> in the Mission Control dashboard: open <code>mission-control.html</code> in GitHub, find the line <code>const STATS={ig:111000,tt:75000...</code> and update the numbers. Commit and you're done.</div>
+
+  <div class="divider"></div>
+
+  <!-- FINAL CHECKLIST -->
+  <h2><span class="step-badge">✓</span> Launch Checklist</h2>
+  <ul class="checklist">
+    <li><div class="check"></div><div><strong>GitHub account created</strong> at github.com (free)</div></li>
+    <li><div class="check"></div><div><strong>Repo created</strong> named <code>yourfemalengineer.github.io</code></div></li>
+    <li><div class="check"></div><div><strong>All 9 files uploaded</strong> to the repo (index, about, content, speaking, contact, mission-control, style.css, shared.js, logo.png)</div></li>
+    <li><div class="check"></div><div><strong>GitHub Pages enabled</strong> in repo Settings → Pages</div></li>
+    <li><div class="check"></div><div><strong>Site tested</strong> at yourfemalengineer.github.io before connecting domain</div></li>
+    <li><div class="check"></div><div><strong>Custom domain added</strong> in GitHub Pages settings</div></li>
+    <li><div class="check"></div><div><strong>4 A records + 1 CNAME added</strong> in GoDaddy DNS</div></li>
+    <li><div class="check"></div><div><strong>Waited 15–30 mins</strong> for DNS to propagate</div></li>
+    <li><div class="check"></div><div><strong>HTTPS enforced</strong> in GitHub Pages settings (padlock ✅)</div></li>
+    <li><div class="check"></div><div><strong>Real email updated</strong> — confirm <code>joan@yourfemaleengineer.com</code> is your correct contact email</div></li>
+    <li><div class="check"></div><div><strong>All nav links tested</strong> on the live site</div></li>
+    <li><div class="check"></div><div><strong>Site URL added</strong> to Instagram bio, TikTok, and media kit</div></li>
+  </ul>
+
+  <div class="big-cta">
+    <h3>Total monthly cost: <strong>$0</strong> 🚀</h3>
+    <p>GitHub Pages hosting is free forever. Your GoDaddy domain renewal (~$15/yr) is the only cost — and you're already paying that. Your custom site, your domain, no monthly fees, no ads.</p>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joan Melendez Misner — @YourFemaleEngineer</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;position:relative;z-index:1;overflow:hidden;}
+.hero-left{padding:140px 60px 80px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2;}
+
+/* ROCKET */
+.rocket-wrap{margin-bottom:24px;opacity:0;animation:fadeUp 1s .1s forwards;height:72px;display:flex;align-items:flex-end;cursor:pointer;}
+.rocket-svg{animation:rocketFloat 3s ease-in-out infinite;filter:drop-shadow(0 0 14px rgba(126,184,255,0.55));}
+@keyframes rocketFloat{0%,100%{transform:translateY(0) rotate(-6deg);}50%{transform:translateY(-14px) rotate(-6deg);}}
+@keyframes rocketLaunch{
+  0%   { transform:translateY(0) rotate(-6deg); opacity:1; }
+  8%   { transform:translateY(10px) rotate(-6deg); }
+  100% { transform:translateY(-600px) rotate(-6deg); opacity:0; }
+}
+.star-trail{position:absolute;left:46px;bottom:0;display:flex;flex-direction:column;gap:5px;}
+.star-dot{width:var(--sz);height:var(--sz);border-radius:50%;background:var(--accent);box-shadow:0 0 5px var(--accent);animation:starBlink var(--dur) ease-in-out infinite;animation-delay:var(--delay);}
+@keyframes starBlink{0%,100%{opacity:.1;}50%{opacity:.85;}}
+
+/* HERO TEXT */
+.hero-eyebrow{font-size:15px;letter-spacing:5px;color:var(--accent);text-transform:uppercase;margin-bottom:20px;opacity:0;animation:fadeUp 1s .3s forwards;display:flex;align-items:center;gap:12px;}
+.hero-eyebrow::before{content:'';width:30px;height:1px;background:var(--accent);}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(60px,7vw,108px);font-weight:700;line-height:.92;letter-spacing:-2px;color:var(--bright);margin-bottom:8px;opacity:0;animation:fadeUp 1s .5s forwards;}
+.hero-title em{font-style:italic;font-weight:300;color:var(--accent);}
+.hero-surname{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,60px);font-weight:300;font-style:italic;color:var(--silver);letter-spacing:2px;margin-bottom:22px;opacity:0;animation:fadeUp 1s .6s forwards;}
+.hero-handle{font-size:15px;letter-spacing:4px;color:var(--soft);text-transform:uppercase;margin-bottom:26px;opacity:0;animation:fadeUp 1s .7s forwards;}
+.hero-desc{font-size:22px;line-height:1.85;color:var(--soft);max-width:500px;margin-bottom:48px;opacity:0;animation:fadeUp 1s .8s forwards;}
+.hero-desc strong{color:var(--bright);font-weight:600;}
+.hero-ctas{display:flex;gap:16px;flex-wrap:wrap;opacity:0;animation:fadeUp 1s 1s forwards;}
+
+/* PHOTO ROTATOR */
+.hero-right{position:relative;height:100vh;overflow:hidden;}
+.photo-slide{position:absolute;inset:0;background-size:cover;opacity:0;transition:opacity 1.2s ease;}
+.photo-slide.active{opacity:1;}
+.hero-right::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(14,12,40,0.96) 0%,rgba(14,12,40,0.35) 42%,rgba(14,12,40,0.04) 100%);z-index:1;pointer-events:none;}
+.photo-dots{position:absolute;bottom:40px;right:40px;display:flex;gap:8px;z-index:2;}
+.photo-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.3);cursor:pointer;transition:all .3s;}
+.photo-dot.active{background:var(--accent);box-shadow:0 0 8px var(--accent);width:20px;border-radius:3px;}
+.photo-caption{position:absolute;bottom:40px;left:40px;z-index:2;font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.5);text-transform:uppercase;opacity:0;transition:opacity .8s;}
+.photo-caption.visible{opacity:1;}
+.scroll-hint{position:absolute;bottom:40px;left:60px;display:flex;align-items:center;gap:12px;opacity:0;animation:fadeIn 1s 1.5s forwards;z-index:3;}
+.scroll-line{width:1px;height:50px;background:linear-gradient(to bottom,var(--accent),transparent);animation:scrollPulse 2s ease-in-out infinite;}
+@keyframes scrollPulse{0%,100%{opacity:.3;}50%{opacity:1;}}
+.scroll-text{font-size:10px;letter-spacing:3px;color:var(--soft);text-transform:uppercase;writing-mode:vertical-rl;}
+
+/* STATS BAR */
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);position:relative;z-index:1;}
+.stats-bar-item{background:rgba(20,16,60,0.9);padding:32px 32px;text-align:center;transition:background .3s;backdrop-filter:blur(8px);}
+.stats-bar-item:hover{background:rgba(45,40,128,0.9);}
+.stats-bar-num{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:700;color:var(--accent);line-height:1;margin-bottom:8px;}
+.stats-bar-label{font-size:13px;letter-spacing:3px;color:var(--soft);text-transform:uppercase;}
+
+/* FEATURE CARDS */
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);position:relative;z-index:1;}
+.feature-card{background:rgba(20,16,60,0.75);padding:52px 40px;position:relative;overflow:hidden;transition:background .3s;text-decoration:none;color:inherit;display:block;backdrop-filter:blur(8px);}
+.feature-card:hover{background:rgba(45,40,128,0.85);}
+.feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--f-color,var(--accent));transform:scaleX(0);transform-origin:left;transition:transform .4s;}
+.feature-card:hover::before{transform:scaleX(1);}
+.feature-num{font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:900;color:var(--border);line-height:1;margin-bottom:22px;transition:color .3s;}
+.feature-card:hover .feature-num{color:var(--muted);}
+.feature-title{font-size:22px;font-weight:600;color:var(--bright);margin-bottom:14px;}
+.feature-desc{font-size:16px;color:var(--soft);line-height:1.8;margin-bottom:22px;}
+.feature-link{font-size:13px;letter-spacing:3px;color:var(--f-color,var(--accent));text-transform:uppercase;}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;min-height:auto;}
+  .hero-left{padding:120px 24px 60px;}
+  .hero-right{height:70vw;min-height:340px;}
+  .hero-right::after{background:linear-gradient(to bottom,rgba(14,12,40,0.7) 0%,rgba(14,12,40,0.1) 100%);}
+  .stats-bar{grid-template-columns:repeat(2,1fr);}
+  .features{grid-template-columns:1fr;}
+  .scroll-hint{display:none;}
+  .rocket-wrap{height:56px;}
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<canvas id="starfield"></canvas>
+
+<nav id="nav">
+  <a href="/yfe-website/index.html" class="nav-logo"><img src="logo.svg" alt="YourFemaleEngineer" class="nav-logo-img"></a>
+  <ul class="nav-links">
+    
+    <li><a href="/yfe-website/index.html" class="active">Home</a></li>
+    <li><a href="/yfe-website/about.html">About</a></li>
+    <li><a href="/yfe-website/content.html">Content</a></li>
+    <li><a href="/yfe-website/speaking.html">Speaking</a></li>
+    <li><a href="/yfe-website/mission-control.html">Mission Control</a></li>
+    <li><a href="/yfe-website/contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+
+    <!-- ANIMATED ROCKET -->
+    <div class="rocket-wrap" style="position:relative;">
+      <div class="star-trail">
+        <div class="star-dot" style="--sz:3px;--dur:1.1s;--delay:0s;"></div>
+        <div class="star-dot" style="--sz:2px;--dur:1.4s;--delay:.2s;"></div>
+        <div class="star-dot" style="--sz:4px;--dur:.9s;--delay:.4s;"></div>
+        <div class="star-dot" style="--sz:2px;--dur:1.6s;--delay:.1s;"></div>
+        <div class="star-dot" style="--sz:3px;--dur:1.2s;--delay:.5s;"></div>
+      </div>
+      <svg class="rocket-svg" width="48" height="72" viewBox="0 0 52 78" fill="none">
+        <path d="M26 2 C16 2 10 18 10 34 L10 56 L42 56 L42 34 C42 18 36 2 26 2Z" fill="url(#bodyG)"/>
+        <path d="M26 2 C20 10 16 20 16 28 L36 28 C36 20 32 10 26 2Z" fill="url(#noseG)"/>
+        <circle cx="26" cy="36" r="7" fill="url(#winG)" stroke="rgba(126,184,255,0.6)" stroke-width="1.5"/>
+        <circle cx="26" cy="36" r="4" fill="rgba(180,220,255,0.4)"/>
+        <path d="M10 50 L2 64 L14 58 L14 50Z" fill="url(#finG)"/>
+        <path d="M42 50 L50 64 L38 58 L38 50Z" fill="url(#finG)"/>
+        <ellipse cx="26" cy="57" rx="10" ry="3" fill="rgba(126,184,255,0.25)"/>
+        <path d="M18 57 C16 66 20 74 26 76 C32 74 36 66 34 57Z" fill="url(#flameO)" style="animation:flameFlicker .18s ease-in-out infinite alternate;"/>
+        <path d="M21 57 C20 63 22 70 26 72 C30 70 32 63 31 57Z" fill="url(#flameI)"/>
+        <path d="M23 57 C22 61 24 66 26 67 C28 66 30 61 29 57Z" fill="white" opacity=".9"/>
+        <defs>
+          <linearGradient id="bodyG" x1="10" y1="0" x2="42" y2="60" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#c8d8ff"/><stop offset="50%" stop-color="#8baeff"/><stop offset="100%" stop-color="#5060cc"/></linearGradient>
+          <linearGradient id="noseG" x1="16" y1="2" x2="36" y2="28" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#e8f0ff"/><stop offset="100%" stop-color="#aabcff"/></linearGradient>
+          <radialGradient id="winG" cx="40%" cy="35%"><stop offset="0%" stop-color="#a0d8ff"/><stop offset="100%" stop-color="#2244aa"/></radialGradient>
+          <linearGradient id="finG" x1="0" y1="50" x2="14" y2="64" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#7090ee"/><stop offset="100%" stop-color="#3040aa"/></linearGradient>
+          <linearGradient id="flameO" x1="26" y1="57" x2="26" y2="76" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#ff8800"/><stop offset="60%" stop-color="#ff4400"/><stop offset="100%" stop-color="#ffcc00" stop-opacity="0"/></linearGradient>
+          <linearGradient id="flameI" x1="26" y1="57" x2="26" y2="72" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#ffcc44"/><stop offset="100%" stop-color="#ff6600" stop-opacity=".3"/></linearGradient>
+        </defs>
+      </svg>
+    </div>
+
+    <div class="hero-eyebrow">Space Mission Integration Engineer</div>
+    <h1 class="hero-title">Joan<br><em>Melendez</em></h1>
+    <div class="hero-surname">Misner</div>
+    <div class="hero-handle">@YourFemaleEngineer</div>
+    <p class="hero-desc"><strong>Puerto Rican. First-gen. NASA engineer.</strong> I launch rockets for a living and make STEM feel possible for the next generation, especially the girls who don't see themselves in the room yet.</p>
+    <div class="hero-ctas">
+      <a href="/yfe-website/about.html" class="btn-primary">My Story</a>
+      <a href="/yfe-website/contact.html" class="btn-ghost">Work With Me</a>
+    </div>
+  </div>
+
+  <!-- Photos — centered on face for each shot -->
+  <div class="hero-right" id="heroRight">
+    <div class="photo-slide active"  style="background-image:url('hp-portrait.jpg');  background-position:center 20%;"></div>
+    <div class="photo-slide"         style="background-image:url('hp-rockets.jpg');   background-position:center 35%;"></div>
+    <div class="photo-slide"         style="background-image:url('hp-speaking.jpg');  background-position:center 25%;"></div>
+    <div class="photo-slide"         style="background-image:url('hp-whiteboard.jpg');background-position:center 30%;"></div>
+    <div class="photo-slide"         style="background-image:url('hp-dell.jpg');       background-position:center 20%;"></div>
+    <div class="photo-caption" id="photoCaption"></div>
+    <div class="photo-dots" id="photoDots"></div>
+  </div>
+
+  <div class="scroll-hint"><div class="scroll-line"></div><div class="scroll-text">Scroll</div></div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span class="ticker-item">Planetary Defender</span><span class="ticker-item">Women in STEM</span><span class="ticker-item">Latina Engineer</span><span class="ticker-item">First-Generation Graduate</span><span class="ticker-item">Keynote Speaker</span><span class="ticker-item">Science Communicator</span><span class="ticker-item">Space Science Missions</span><span class="ticker-item">Artemis</span>
+    <span class="ticker-item">Planetary Defender</span><span class="ticker-item">Women in STEM</span><span class="ticker-item">Latina Engineer</span><span class="ticker-item">First-Generation Graduate</span><span class="ticker-item">Keynote Speaker</span><span class="ticker-item">Science Communicator</span><span class="ticker-item">Space Science Missions</span><span class="ticker-item">Artemis</span>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-bar-item"><div class="stats-bar-num">262K</div><div class="stats-bar-label">Total Social Reach</div></div>
+  <div class="stats-bar-item"><div class="stats-bar-num">10+</div><div class="stats-bar-label">Missions Launched to Space</div></div>
+  <div class="stats-bar-item"><div class="stats-bar-num">25+</div><div class="stats-bar-label">Brand Partners</div></div>
+  <div class="stats-bar-item"><div class="stats-bar-num">6</div><div class="stats-bar-label">Keynote Topics</div></div>
+</div>
+
+<!-- FEATURE CARDS -->
+<div class="features">
+  <a href="/yfe-website/about.html" class="feature-card" style="--f-color:var(--accent);">
+    <div class="feature-num">01</div>
+    <div class="feature-title">My Story</div>
+    <div class="feature-desc">From Puerto Rico to NASA, rejected 13 times before I got in. First-gen engineer. Mission Integration Specialist on 10+ missions to space.</div>
+    <div class="feature-link">Read My Story →</div>
+  </a>
+  <a href="/yfe-website/content.html" class="feature-card" style="--f-color:#e1306c;">
+    <div class="feature-num">02</div>
+    <div class="feature-title">STEM Content</div>
+    <div class="feature-desc">262K followers across Instagram, TikTok, Threads, YouTube and Facebook. Space facts, NASA breakdowns, and engineering life, made for everyone.</div>
+    <div class="feature-link">See My Content →</div>
+  </a>
+  <a href="/yfe-website/speaking.html" class="feature-card" style="--f-color:var(--gold);">
+    <div class="feature-num">03</div>
+    <div class="feature-title">Keynote Speaking</div>
+    <div class="feature-desc">Six powerful talks covering space exploration, diversity in STEM, resilience, and building a professional brand in aerospace. Available worldwide.</div>
+    <div class="feature-link">Book Joan →</div>
+  </a>
+</div>
+
+<footer>
+  <img src="logo.svg" alt="YourFemaleEngineer" class="footer-logo-img">
+  <div class="footer-links">
+    <a href="/yfe-website/index.html">Home</a><a href="/yfe-website/about.html">About</a><a href="/yfe-website/content.html">Content</a><a href="/yfe-website/speaking.html">Speaking</a><a href="/yfe-website/contact.html">Contact</a>
+  </div>
+  <div class="footer-copy">© 2026 @YourFemaleEngineer</div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+const captions=['Space Engineer & Science Communicator','Kennedy Space Center','Keynote Speaking','Engineering in Action','Dell Collaboration'];
+const slides=document.querySelectorAll('.photo-slide');
+const dotsEl=document.getElementById('photoDots');
+const captionEl=document.getElementById('photoCaption');
+let current=0,timer;
+slides.forEach((_,i)=>{const d=document.createElement('div');d.className='photo-dot'+(i===0?' active':'');d.addEventListener('click',()=>goTo(i));dotsEl.appendChild(d);});
+function goTo(n){slides[current].classList.remove('active');dotsEl.children[current].classList.remove('active');captionEl.classList.remove('visible');current=(n+slides.length)%slides.length;slides[current].classList.add('active');dotsEl.children[current].classList.add('active');captionEl.textContent=captions[current]||'';setTimeout(()=>captionEl.classList.add('visible'),100);clearInterval(timer);timer=setInterval(()=>goTo(current+1),5500);}
+captionEl.textContent=captions[0];setTimeout(()=>captionEl.classList.add('visible'),900);timer=setInterval(()=>goTo(current+1),5500);
+
+// ── ROCKET LAUNCH ON HOVER ──
+(function(){
+  const wrap = document.querySelector('.rocket-wrap');
+  const svg  = document.querySelector('.rocket-svg');
+  if (!wrap || !svg) return;
+
+  let launching = false;
+
+  function launch() {
+    if (launching) return;
+    launching = true;
+
+    // ── ROCKET LAUNCH SOUND ──
+    try {
+      const ac = new (window.AudioContext || window.webkitAudioContext)();
+      const t = ac.currentTime;
+      const dur = 3.0;
+
+      // ── Layer 1: Deep ignition rumble (low-freq noise, builds up) ──
+      const rumbleBuf = ac.createBuffer(1, ac.sampleRate * dur, ac.sampleRate);
+      const rumbleData = rumbleBuf.getChannelData(0);
+      for (let i = 0; i < rumbleData.length; i++) {
+        rumbleData[i] = (Math.random() * 2 - 1);
+      }
+      const rumble = ac.createBufferSource();
+      rumble.buffer = rumbleBuf;
+      const rumbleLow = ac.createBiquadFilter();
+      rumbleLow.type = 'lowpass';
+      rumbleLow.frequency.value = 80;
+      rumbleLow.Q.value = 0.5;
+      const rumbleGain = ac.createGain();
+      rumbleGain.gain.setValueAtTime(0, t);
+      rumbleGain.gain.linearRampToValueAtTime(1.2, t + 0.3);   // ignition build
+      rumbleGain.gain.linearRampToValueAtTime(1.8, t + 0.8);   // full roar
+      rumbleGain.gain.setValueAtTime(1.8, t + 1.8);
+      rumbleGain.gain.linearRampToValueAtTime(0.8, t + dur);    // fading as rocket climbs
+      rumble.connect(rumbleLow); rumbleLow.connect(rumbleGain); rumbleGain.connect(ac.destination);
+
+      // ── Layer 2: Mid crackle (engine combustion texture) ──
+      const crackBuf = ac.createBuffer(1, ac.sampleRate * dur, ac.sampleRate);
+      const crackData = crackBuf.getChannelData(0);
+      for (let i = 0; i < crackData.length; i++) {
+        crackData[i] = (Math.random() * 2 - 1);
+      }
+      const crack = ac.createBufferSource();
+      crack.buffer = crackBuf;
+      const crackBand = ac.createBiquadFilter();
+      crackBand.type = 'bandpass';
+      crackBand.frequency.setValueAtTime(400, t);
+      crackBand.frequency.exponentialRampToValueAtTime(1200, t + dur);
+      crackBand.Q.value = 0.8;
+      const crackGain = ac.createGain();
+      crackGain.gain.setValueAtTime(0, t);
+      crackGain.gain.linearRampToValueAtTime(0.6, t + 0.25);
+      crackGain.gain.linearRampToValueAtTime(0.9, t + 0.7);
+      crackGain.gain.linearRampToValueAtTime(0.4, t + dur);
+      crack.connect(crackBand); crackBand.connect(crackGain); crackGain.connect(ac.destination);
+
+      // ── Layer 3: High whoosh (rocket climbing away, Doppler-like) ──
+      const whooshBuf = ac.createBuffer(1, ac.sampleRate * dur, ac.sampleRate);
+      const whooshData = whooshBuf.getChannelData(0);
+      for (let i = 0; i < whooshData.length; i++) {
+        whooshData[i] = (Math.random() * 2 - 1);
+      }
+      const whoosh = ac.createBufferSource();
+      whoosh.buffer = whooshBuf;
+      const whooshHigh = ac.createBiquadFilter();
+      whooshHigh.type = 'highpass';
+      whooshHigh.frequency.setValueAtTime(2000, t);
+      whooshHigh.frequency.exponentialRampToValueAtTime(6000, t + dur);
+      const whooshGain = ac.createGain();
+      whooshGain.gain.setValueAtTime(0, t);
+      whooshGain.gain.linearRampToValueAtTime(0.0, t + 0.4);   // delayed — comes after ignition
+      whooshGain.gain.linearRampToValueAtTime(0.35, t + 1.0);
+      whooshGain.gain.linearRampToValueAtTime(0.5, t + 1.6);
+      whooshGain.gain.linearRampToValueAtTime(0.0, t + dur);   // fades as rocket leaves
+      whoosh.connect(whooshHigh); whooshHigh.connect(whooshGain); whooshGain.connect(ac.destination);
+
+      // ── Layer 4: Initial ignition BOOM (short percussive thud) ──
+      const boomBuf = ac.createBuffer(1, ac.sampleRate * 0.4, ac.sampleRate);
+      const boomData = boomBuf.getChannelData(0);
+      for (let i = 0; i < boomData.length; i++) {
+        const decay = Math.pow(1 - i / boomData.length, 3);
+        boomData[i] = (Math.random() * 2 - 1) * decay;
+      }
+      const boom = ac.createBufferSource();
+      boom.buffer = boomBuf;
+      const boomLow = ac.createBiquadFilter();
+      boomLow.type = 'lowpass';
+      boomLow.frequency.value = 120;
+      const boomGain = ac.createGain();
+      boomGain.gain.setValueAtTime(2.5, t);
+      boomGain.gain.exponentialRampToValueAtTime(0.001, t + 0.4);
+      boom.connect(boomLow); boomLow.connect(boomGain); boomGain.connect(ac.destination);
+
+      // ── Fire everything ──
+      rumble.start(t); rumble.stop(t + dur);
+      crack.start(t);  crack.stop(t + dur);
+      whoosh.start(t); whoosh.stop(t + dur);
+      boom.start(t);   boom.stop(t + 0.4);
+
+    } catch(e) {}
+
+    // Exhaust flare
+    svg.style.filter = 'drop-shadow(0 0 32px rgba(255,140,30,1)) drop-shadow(0 0 16px rgba(255,80,0,0.8))';
+
+    // Animate upward — slower (2.2s)
+    svg.style.animation = 'rocketLaunch 2.2s cubic-bezier(0.25,0,0.6,1) forwards';
+
+    // After launch completes, reset invisibly and restart float
+    setTimeout(() => {
+      svg.style.transition = 'none';
+      svg.style.animation  = 'none';
+      svg.style.opacity    = '0';
+      svg.style.transform  = 'translateY(60px) rotate(-6deg)';
+      svg.style.filter     = 'drop-shadow(0 0 14px rgba(126,184,255,0.55))';
+
+      // Force reflow
+      void svg.offsetHeight;
+
+      // Fade back in and resume float
+      svg.style.transition = 'opacity 0.4s ease';
+      svg.style.opacity    = '1';
+      svg.style.transform  = '';
+      svg.style.animation  = 'rocketFloat 3s ease-in-out infinite';
+
+      setTimeout(() => {
+        svg.style.transition = '';
+        launching = false;
+      }, 500);
+    }, 2300);
+  }
+
+  wrap.addEventListener('mouseenter', launch);
+  wrap.addEventListener('click', launch);      // also works on mobile tap
+})();
+</script>
+<style>@keyframes flameFlicker{from{opacity:.8;transform:scaleX(1);}to{opacity:1;transform:scaleX(1.12);}}</style>
+</body>
+</html>
