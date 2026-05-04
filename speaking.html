@@ -38,6 +38,112 @@
   .topics-grid{grid-template-columns:1fr;}
   .speaking-cta-band{padding:36px 24px;flex-direction:column;text-align:center;}
 }
+
+.press-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin-bottom:60px;
+}
+.press-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:28px;
+  text-decoration:none;
+  color:inherit;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  transition:border-color .3s,transform .2s,background .3s;
+  position:relative;
+  overflow:hidden;
+}
+.press-card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:2px;
+  background:linear-gradient(90deg,var(--accent),var(--gold));
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .4s;
+}
+.press-card:hover{
+  border-color:var(--accent);
+  transform:translateY(-3px);
+  background:rgba(45,40,128,0.5);
+}
+.press-card:hover::before{transform:scaleX(1);}
+.press-pub{
+  font-size:10px;
+  letter-spacing:3px;
+  color:var(--gold);
+  text-transform:uppercase;
+  font-weight:700;
+}
+.press-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;
+  font-weight:700;
+  color:var(--bright);
+  line-height:1.3;
+}
+.press-quote{
+  font-size:14px;
+  color:var(--soft);
+  line-height:1.7;
+  font-style:italic;
+  border-left:2px solid var(--accent);
+  padding-left:12px;
+  flex:1;
+}
+.press-link{
+  font-size:11px;
+  letter-spacing:2px;
+  color:var(--accent);
+  text-transform:uppercase;
+}
+@media(max-width:900px){
+  .press-grid{grid-template-columns:1fr;}
+}
+
+
+.press-logo-wrap {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 10px 16px;
+}
+.press-logo-wrap.press-logo-dark {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 10px 16px;
+}
+.press-logo-img {
+  max-height: 40px;
+  max-width: 190px;
+  object-fit: contain;
+  display: block;
+}
+
+.press-logo{
+  display:inline-block;
+  font-family:'Cormorant Garamond',serif;
+  font-weight:700;
+  font-size:22px;
+  line-height:1;
+  letter-spacing:-0.5px;
+}
+.press-logo-time{color:#cc0000;font-family:Georgia,serif;font-size:20px;}
+.press-logo-ifl{color:#fff;font-family:Arial Black,sans-serif;font-size:18px;}
+.press-logo-yahoo{color:#6001d2;font-family:Arial,sans-serif;font-size:20px;}
+.press-logo-remezcla{color:#fff;font-family:Georgia,serif;font-style:italic;font-size:22px;}
+.press-logo-npr{color:#222;background:#fff;padding:2px 8px;border-radius:3px;font-family:Arial Black,sans-serif;font-size:18px;}
 </style>
 </head>
 <body>
@@ -73,7 +179,7 @@
       <a href="contact.html" class="btn-primary" style="margin-top:12px;">Book Joan to Speak</a>
     </div>
     <div class="speaking-stats">
-      <div class="speaking-stat"><div class="speaking-stat-num">6</div><div class="speaking-stat-label">Keynote Topics</div></div>
+          <div class="speaking-stat"><div class="speaking-stat-num">6</div><div class="speaking-stat-label">Keynote Topics</div></div>
       <div class="speaking-stat"><div class="speaking-stat-num">10+</div><div class="speaking-stat-label">Missions Launched to Space</div></div>
       <div class="speaking-stat"><div class="speaking-stat-num">15+</div><div class="speaking-stat-label">Years in STEM</div></div>
       <div class="speaking-stat"><div class="speaking-stat-num">3</div><div class="speaking-stat-label">Languages</div></div>
@@ -149,7 +255,9 @@
   </div>
 
   <!-- FEATURED: Sandvik Panel -->
-  <div class="sandvik-feature reveal" style="margin-bottom:60px;">
+  <div style="margin:-24px 0 40px;padding:16px 24px;border:1px solid rgba(240,192,96,0.3);border-radius:8px;background:rgba(240,192,96,0.06);"><span style="color:var(--gold);font-size:13px;font-style:italic;">* Every keynote topic can be fully tailored to your event, audience, industry, and goals. Joan works closely with organizers to ensure maximum impact.</span></div>
+
+<div class="sandvik-feature reveal" style="margin-bottom:60px;">
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;">
       <div style="width:3px;height:36px;background:linear-gradient(to bottom,var(--accent),var(--gold));border-radius:2px;flex-shrink:0;"></div>
       <div>
@@ -182,6 +290,54 @@
         <a href="https://www.home.sandvik/en/news-and-media/news/2025/11/roundtable-explores-bridging-talent-gap-in-mining/" target="_blank" rel="noopener" class="btn-primary" style="margin-top:8px;text-align:center;">↗ Read the Full Story</a>
       </div>
     </div>
+  </div>
+
+
+  <div class="divider"></div>
+
+  <div class="section-head" style="margin-bottom:32px;">
+    <div class="section-label">Press &amp; Media</div>
+    <h2 class="section-title">Featured <em>In</em></h2>
+    <p class="section-sub">Joan's story and mission have been covered by leading publications worldwide.</p>
+  </div>
+
+  <div class="press-grid">
+    <a href="https://www.timeforkids.com/your-hot-job/articles/aerospace-engineer" target="_blank" rel="noopener" class="press-card">
+      <div class="press-logo-wrap"><img src="press-timeforkids.png" alt="Time for Kids" class="press-logo-img"></div>
+      <div class="press-title">Real Talk with Joan Melendez Misner</div>
+      <div class="press-quote">"Engineers need amazing science communicators to break it all down for people who are not in the sciences or engineering world."</div>
+      <div class="press-link">Read Article ↗</div>
+    </a>
+    <a href="https://www.iflscience.com/iflscience-meets-nasa-engineer-joan-melendez-misner-on-inspiring-the-next-generations-involvement-in-stem-64555" target="_blank" rel="noopener" class="press-card">
+      <div class="press-logo-wrap" style="background:#1a1a1a;"><img src="press-iflscience.png" alt="IFLScience" class="press-logo-img"></div>
+      <div class="press-title">IFLScience Meets: NASA Engineer Joan Melendez Misner On Inspiring The Next Generation's Involvement In STEM</div>
+      <div class="press-quote">"My piece of advice is to Network to Get Work."</div>
+      <div class="press-link">Read Article ↗</div>
+    </a>
+    <a href="https://www.yahoo.com/lifestyle/latinx-women-pioneering-the-future-of-aerospace-engineering-034816834.html" target="_blank" rel="noopener" class="press-card">
+      <div class="press-logo-wrap"><img src="press-yahoo.png" alt="Yahoo! Life" class="press-logo-img"></div>
+      <div class="press-title">Latinx Women Pioneering the Future of Aerospace Engineering</div>
+      <div class="press-quote">"I was the first one in my family to graduate with a college degree... I never really thought engineering was for me."</div>
+      <div class="press-link">Read Article ↗</div>
+    </a>
+    <a href="https://remezcla.com/features/culture/nasa-aerospace-engineer-shares-her-journey-explains-why-not-even-the-skys-the-limit/" target="_blank" rel="noopener" class="press-card">
+      <div class="press-logo-wrap"><img src="press-remezcla.png" alt="Remezcla" class="press-logo-img" style="max-height:52px;max-width:220px;"></div>
+      <div class="press-title">NASA Aerospace Engineer Shares Her Journey &amp; Explains why "Not Even the Sky's the Limit"</div>
+      <div class="press-quote">"When she was living in the mountains in Barranquitas, Puerto Rico, she had the perfect view of the stars."</div>
+      <div class="press-link">Read Article ↗</div>
+    </a>
+    <a href="https://www.cfpublic.org/2021-12-27/one-rocket-engineers-quest-to-make-stem-more-diverse-one-tiktok-at-a-time" target="_blank" rel="noopener" class="press-card">
+      <div class="press-logo-wrap"><img src="press-npr.png" alt="NPR" class="press-logo-img"></div>
+      <div class="press-title">One rocket engineer's quest to make STEM more diverse, one TikTok at a time</div>
+      <div class="press-quote">"You don't wake up as a kid, and say 'I just want to work on launch stuff.' It was a long road."</div>
+      <div class="press-link">Read Article ↗</div>
+    </a>
+    <a href="https://www.yahoo.com/lifestyle/meet-millennial-engineer-inspiring-more-200601166.html" target="_blank" rel="noopener" class="press-card">
+      <div class="press-logo-wrap"><img src="press-yahoo.png" alt="Yahoo! Life" class="press-logo-img"></div>
+      <div class="press-title">Meet the millennial engineer inspiring a new, more diverse generation of scientists</div>
+      <div class="press-quote">"Growing up, I didn't have a lot of role models... there was not a lot of scientists that looked like me."</div>
+      <div class="press-link">Read Article ↗</div>
+    </a>
   </div>
 
   <div class="speaking-cta-band reveal">
